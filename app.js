@@ -1,5 +1,3 @@
-import alleVragen from "./data/vragen.js";
-
 function gooiDobbelsteen() {
   const dobbel = Math.floor(Math.random() * 6) + 1;
   document.getElementById("dobbel").innerText = dobbel;
