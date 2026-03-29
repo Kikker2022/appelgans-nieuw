@@ -1,5 +1,5 @@
 
-const alleVragen = [
+var alleVragen = [
   {vraag:"Wat is de hoofdstad van Nederland?", antwoord:"Amsterdam", rubriek:"TopoVMBO", moeilijkheid:1},
   {vraag:"Welke provincie ligt helemaal in het noorden?", antwoord:"Groningen", rubriek:"TopoVMBO", moeilijkheid:1},
   {vraag:"Welke zee ligt ten noorden van Nederland?", antwoord:"Noordzee", rubriek:"TopoVMBO", moeilijkheid:2},
@@ -13,4 +13,4 @@ const alleVragen = [
   {vraag:"Waar staat RTK voor?", antwoord:"Realtime kinematic", rubriek:"Landmeetkunde", moeilijkheid:3}
 ];
 
-export default alleVragen;
+
