@@ -1,3 +1,5 @@
+import { alleVragen } from "./data/vragen.js";
+
 function gooiDobbelsteen() {
 
   let worp = Math.floor(Math.random() * 6) + 1;
