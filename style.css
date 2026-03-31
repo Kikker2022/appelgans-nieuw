@@ -1,10 +1,22 @@
-body{
-font-family: Arial;
-text-align:center;
-padding:20px;
+body {
+font-family: Arial, sans-serif;
+text-align: center;
 }
 
-button{
-padding:15px;
-font-size:18px;
+#bord {
+display: grid;
+grid-template-columns: repeat(7, 1fr);
+gap: 5px;
+margin: 20px;
+}
+
+.vakje {
+border: 1px solid black;
+padding: 15px;
+background: #f0f0f0;
+}
+
+.speler {
+background: lightgreen;
+font-weight: bold;
 }
