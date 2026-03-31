@@ -6,7 +6,7 @@ const vraagTekst = document.getElementById("vraag");
 const antwoordTekst = document.getElementById("antwoord");
 const bord = document.getElementById("bord");
 
-let positie = 0;
+let positie = 1;
 
 // bord maken
 for (let i = 1; i <= 42; i++) {
@@ -52,3 +52,5 @@ vraagTekst.textContent = "Vraag: " + randomVraag.vraag;
 antwoordTekst.textContent = "Antwoord: " + randomVraag.antwoord;
 
 });
+
+updateBord();
