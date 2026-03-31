@@ -1,15 +1,18 @@
 import { alleVragen } from "./data/vragen.js";
 
-function gooiDobbelsteen() {
+const dobbelsteenKnop = document.getElementById("dobbelsteen");
+const worpTekst = document.getElementById("worp");
+const vraagTekst = document.getElementById("vraag");
+const antwoordTekst = document.getElementById("antwoord");
 
-  let worp = Math.floor(Math.random() * 6) + 1;
-  document.getElementById("dobbel").innerText = "Je gooide: " + worp;
+dobbelsteenKnop.addEventListener("click", () => {
 
-  let vraag = vragen[Math.floor(Math.random() * vragen.length)];
+let worp = Math.floor(Math.random() * 6) + 1;
+worpTekst.textContent = "Je gooide: " + worp;
 
-  document.getElementById("vraag").innerText = vraag.vraag;
-  document.getElementById("antwoord").innerText = vraag.antwoord;
+let randomVraag = alleVragen[Math.floor(Math.random() * alleVragen.length)];
 
-}
+vraagTekst.textContent = "Vraag: " + randomVraag.vraag;
+antwoordTekst.textContent = "Antwoord: " + randomVraag.antwoord;
 
-window.gooiDobbelsteen = gooiDobbelsteen;
+});
