@@ -21,10 +21,13 @@ function updateBord() {
 
 document.querySelectorAll(".vakje").forEach(v => {
 v.classList.remove("speler");
+v.textContent = v.id.replace("vak-",""); // reset nummer
 });
 
 if (positie > 0) {
-document.getElementById("vak-" + positie).classList.add("speler");
+let spelerVak = document.getElementById("vak-" + positie);
+spelerVak.classList.add("speler");
+spelerVak.textContent = "🪿 " + positie;
 }
 
 }
