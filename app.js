@@ -17,8 +17,22 @@ let huidigeVraag = null;
 
 const ganzenVakjes = [6, 31];
 
-// bord maken
+// bord maken (slangvorm)
+let vakjes = [];
+
 for (let i = 1; i <= 42; i++) {
+vakjes.push(i);
+}
+
+// slangvorm maken
+let slang = [];
+while (vakjes.length) {
+let rij = vakjes.splice(0,7);
+if (slang.length % 2 === 1) rij.reverse();
+slang.push(rij);
+}
+
+slang.flat().forEach(i => {
 const vakje = document.createElement("div");
 vakje.classList.add("vakje");
 vakje.id = "vak-" + i;
@@ -30,7 +44,7 @@ vakje.textContent = i;
 }
 
 bord.appendChild(vakje);
-}
+});
 
 function updateBord() {
 
@@ -44,8 +58,6 @@ vak.textContent = "🪿 " + i;
 vak.textContent = i;
 }
 
-vak.classList.remove("speler1");
-vak.classList.remove("speler2");
 }
 
 // speler 1
@@ -112,11 +124,9 @@ if (positie >= 42) {
 bericht = "🎉 Team " + beurt + " wint!";
 }
 
-// positie terugzetten
 if (beurt === 1) positie1 = positie;
 else positie2 = positie;
 
-// bericht + kleur
 worpTekst.textContent = "Team " + beurt + " gooide: " + worp;
 
 if (bericht !== "") {
@@ -141,8 +151,6 @@ huidigeVraag = alleVragen[Math.floor(Math.random() * alleVragen.length)];
 
 vraagTekst.textContent = "Vraag: " + huidigeVraag.vraag;
 antwoordTekst.textContent = "";
-
-// beurt wisselen behalve bij extra beurt
 
 if (!(positie === 6 || positie === 31 || positie === 25)) {
 beurt = beurt === 1 ? 2 : 1;
