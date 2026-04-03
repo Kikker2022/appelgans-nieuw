@@ -2,33 +2,64 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>🪿 Appelgans</title>
-<link rel="stylesheet" href="style.css">
+<title>Appelgans</title>
+
+<style>
+
+body {
+font-family: Arial;
+text-align: center;
+}
+
+#bord {
+display: grid;
+grid-template-columns: repeat(7, 60px);
+gap: 5px;
+justify-content: center;
+margin-top: 20px;
+}
+
+.vak {
+width: 60px;
+height: 60px;
+border: 1px solid black;
+display: flex;
+align-items: center;
+justify-content: center;
+font-size: 12px;
+}
+
+.team1 {
+background-color: lightblue;
+}
+
+.team2 {
+background-color: lightcoral;
+}
+
+</style>
+
 </head>
 
 <body>
 
 <h1>🪿 Appelgans</h1>
 
-<h2 id="beurt">Team 1 is aan de beurt</h2>
+<h3 id="beurt">Team 1 is aan de beurt</h3>
 
-<button id="dobbelsteen">🎲 Gooi dobbelsteen</button>
+<button id="dobbel">🎲 Gooi dobbelsteen</button>
 
 <p id="worp"></p>
-
 <p id="melding"></p>
-  
-<div id="bord"></div>
-
-<p id="vraag"></p>
-<p id="antwoord"></p>
 
 <h3>Score</h3>
-<p id="score1">Team 1: 1</p>
-<p id="score2">Team 2: 1</p>
 
-<script type="module" src="app.js"></script>
+<p>Team 1: <span id="score1">0</span></p>
+<p>Team 2: <span id="score2">0</span></p>
+
+<div id="bord"></div>
+
+<script src="app.js"></script>
 
 </body>
 </html>
