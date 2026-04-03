@@ -1,54 +1,39 @@
 console.log("Nieuwe versie geladen");
 
-// elementen
-let dobbelKnop = document.getElementById("dobbel");
-let worpTekst = document.getElementById("worp");
+let dobbel = document.getElementById("dobbel");
 let bord = document.getElementById("bord");
-let beurtTekst = document.getElementById("beurt");
-let meldingTekst = document.getElementById("melding");
+let worpTekst = document.getElementById("worp");
+let melding = document.getElementById("melding");
+let beurt = document.getElementById("beurt");
 
 let score1 = document.getElementById("score1");
 let score2 = document.getElementById("score2");
 
-// spelers
 let positie1 = 1;
 let positie2 = 1;
 
-let huidigeSpeler = 1;
+let speler = 1;
 let nogEenKeer = false;
 
-
-// vragen
-
 let vragen = [
-
-{vraag:"Wat meet een tachymeter?", antwoord:"Afstanden en hoeken"},
-{vraag:"Wat is de hoofdstad van Frankrijk?", antwoord:"Parijs"},
-{vraag:"Hoeveel dagen heeft een jaar?", antwoord:"365"},
-{vraag:"Wat is 5 + 7?", antwoord:"12"}
-
+{vraag:"Wat meet een tachymeter?",antwoord:"Afstanden en hoeken"},
+{vraag:"Wat is de hoofdstad van Duitsland?",antwoord:"Berlijn"},
+{vraag:"Hoeveel meter is 1 km?",antwoord:"1000"},
+{vraag:"Wat is 6 x 7?",antwoord:"42"}
 ];
 
-
-// bord maken
-
-function maakBord() {
+function tekenBord(){
 
 bord.innerHTML = "";
 
-for (let i = 1; i <= 42; i++) {
+for(let i=1;i<=42;i++){
 
 let vak = document.createElement("div");
-vak.classList.add("vak");
+vak.className = "vak";
 vak.textContent = i;
 
-if (i === positie1) {
-vak.innerHTML = "🔵";
-}
-
-if (i === positie2) {
-vak.innerHTML = "🔴";
-}
+if(i===positie1) vak.textContent="🔵";
+if(i===positie2) vak.textContent="🔴";
 
 bord.appendChild(vak);
 
@@ -56,116 +41,74 @@ bord.appendChild(vak);
 
 }
 
-maakBord();
+tekenBord();
 
+dobbel.onclick=function(){
 
-// dobbelsteen
+let worp = Math.floor(Math.random()*6)+1;
 
-dobbelKnop.addEventListener("click", function () {
+worpTekst.textContent="Je gooide "+worp;
 
-let worp = Math.floor(Math.random() * 6) + 1;
+melding.textContent="";
 
-meldingTekst.textContent = "";
+if(speler===1){
+positie1+=worp;
+ganzen(1);
+score1.textContent=positie1;
+}else{
+positie2+=worp;
+ganzen(2);
+score2.textContent=positie2;
+}
 
-if (huidigeSpeler === 1) {
+vraag();
 
-positie1 += worp;
+tekenBord();
 
-if (positie1 > 42) positie1 = 42;
+if(!nogEenKeer){
+speler=speler===1?2:1;
+}
 
-ganzenVakjes(1);
+beurt.textContent="Team "+speler+" is aan de beurt";
 
-score1.textContent = positie1;
+nogEenKeer=false;
 
 }
 
-else {
+function vraag(){
 
-positie2 += worp;
+let v = vragen[Math.floor(Math.random()*vragen.length)];
 
-if (positie2 > 42) positie2 = 42;
-
-ganzenVakjes(2);
-
-score2.textContent = positie2;
+melding.innerHTML=
+"❓ "+v.vraag+
+"<br><button onclick='antwoord(\""+v.antwoord+"\")'>Antwoord</button>";
 
 }
 
-worpTekst.textContent = "Je gooide " + worp;
-
-vraagTonen();
-
-maakBord();
-
-if (!nogEenKeer) wisselSpeler();
-
-nogEenKeer = false;
-
-});
-
-
-// vragen tonen
-
-function vraagTonen(){
-
-let random = vragen[Math.floor(Math.random() * vragen.length)];
-
-meldingTekst.innerHTML =
-"❓ " + random.vraag +
-"<br><br><button onclick='toonAntwoord(\""+random.antwoord+"\")'>Toon antwoord</button>";
-
+function antwoord(a){
+melding.innerHTML+="<br>✅ "+a;
 }
 
-function toonAntwoord(antwoord){
+function ganzen(s){
 
-meldingTekst.innerHTML += "<br>✅ " + antwoord;
+let pos = s===1?positie1:positie2;
 
+if(pos===6){
+pos+=12;
+melding.textContent="⭐ 12 vooruit";
 }
 
-
-// ganzenvakjes
-
-function ganzenVakjes(speler) {
-
-let positie = speler === 1 ? positie1 : positie2;
-
-if (positie === 6) {
-positie += 12;
-meldingTekst.textContent = "⭐ 12 vakjes vooruit";
+if(pos===19){
+pos=10;
+melding.textContent="↩️ terug naar 10";
 }
 
-if (positie === 12) {
-positie += 3;
-meldingTekst.textContent = "⭐ 3 vakjes vooruit";
+if(pos===31){
+melding.textContent="⭐ nog een keer";
+nogEenKeer=true;
 }
 
-if (positie === 19) {
-positie = 10;
-meldingTekst.textContent = "↩️ Terug naar 10";
-}
-
-if (positie === 31) {
-meldingTekst.textContent = "⭐ Nog een keer gooien";
-nogEenKeer = true;
-}
-
-if (speler === 1) positie1 = positie;
-else positie2 = positie;
-
-}
-
-
-// wissel speler
-
-function wisselSpeler() {
-
-if (huidigeSpeler === 1) {
-huidigeSpeler = 2;
-beurtTekst.textContent = "Team 2 is aan de beurt";
-}
-else {
-huidigeSpeler = 1;
-beurtTekst.textContent = "Team 1 is aan de beurt";
-}
+if(s===1) positie1=pos;
+else positie2=pos;
 
 }
