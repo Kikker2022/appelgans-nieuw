@@ -15,6 +15,20 @@ let positie1 = 1;
 let positie2 = 1;
 
 let huidigeSpeler = 1;
+let nogEenKeer = false;
+
+
+// vragen
+
+let vragen = [
+
+{vraag:"Wat meet een tachymeter?", antwoord:"Afstanden en hoeken"},
+{vraag:"Wat is de hoofdstad van Frankrijk?", antwoord:"Parijs"},
+{vraag:"Hoeveel dagen heeft een jaar?", antwoord:"365"},
+{vraag:"Wat is 5 + 7?", antwoord:"12"}
+
+];
+
 
 // bord maken
 
@@ -29,13 +43,11 @@ vak.classList.add("vak");
 vak.textContent = i;
 
 if (i === positie1) {
-vak.textContent = "🪿";
-vak.classList.add("team1");
+vak.innerHTML = "🔵";
 }
 
 if (i === positie2) {
-vak.textContent = "🪿";
-vak.classList.add("team2");
+vak.innerHTML = "🔴";
 }
 
 bord.appendChild(vak);
@@ -45,6 +57,7 @@ bord.appendChild(vak);
 }
 
 maakBord();
+
 
 // dobbelsteen
 
@@ -80,11 +93,35 @@ score2.textContent = positie2;
 
 worpTekst.textContent = "Je gooide " + worp;
 
-wisselSpeler();
+vraagTonen();
 
 maakBord();
 
+if (!nogEenKeer) wisselSpeler();
+
+nogEenKeer = false;
+
 });
+
+
+// vragen tonen
+
+function vraagTonen(){
+
+let random = vragen[Math.floor(Math.random() * vragen.length)];
+
+meldingTekst.innerHTML =
+"❓ " + random.vraag +
+"<br><br><button onclick='toonAntwoord(\""+random.antwoord+"\")'>Toon antwoord</button>";
+
+}
+
+function toonAntwoord(antwoord){
+
+meldingTekst.innerHTML += "<br>✅ " + antwoord;
+
+}
+
 
 // ganzenvakjes
 
@@ -108,14 +145,15 @@ meldingTekst.textContent = "↩️ Terug naar 10";
 }
 
 if (positie === 31) {
-meldingTekst.textContent = "⭐ Nog een keer";
-return;
+meldingTekst.textContent = "⭐ Nog een keer gooien";
+nogEenKeer = true;
 }
 
 if (speler === 1) positie1 = positie;
 else positie2 = positie;
 
 }
+
 
 // wissel speler
 
