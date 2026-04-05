@@ -18,12 +18,8 @@ let positie2 = 1;
 let speler = 1;
 let nogEenKeer = false;
 
-
-// team kleuren tonen
-
-score1.innerHTML = "🔵 1";
-score2.innerHTML = "🔴 1";
-
+// ganzen vakjes
+const ganzenVakjes = [6, 12, 19, 31];
 
 // bord tekenen
 
@@ -31,12 +27,34 @@ function tekenBord() {
 
 bord.innerHTML = "";
 
-for (let i = 1; i <= 42; i++) {
+// slang volgorde
+let volgorde = [];
+
+for (let rij = 0; rij < 6; rij++) {
+
+let start = rij * 7 + 1;
+let rijVakjes = [];
+
+for (let i = 0; i < 7; i++) {
+rijVakjes.push(start + i);
+}
+
+if (rij % 2 === 1) rijVakjes.reverse();
+
+volgorde.push(...rijVakjes);
+
+}
+
+volgorde.forEach(i => {
 
 let vak = document.createElement("div");
 vak.classList.add("vakje");
 
 let inhoud = i;
+
+if (ganzenVakjes.includes(i)) {
+inhoud = "🪿";
+}
 
 if (i === positie1) inhoud = "🔵";
 if (i === positie2) inhoud = "🔴";
@@ -49,18 +67,11 @@ vak.innerHTML = inhoud;
 
 bord.appendChild(vak);
 
-}
+});
 
 }
-
-
-// ganzenbord slangvorm
-
-bord.style.display = "grid";
-bord.style.gridTemplateColumns = "repeat(7, 70px)";
 
 tekenBord();
-
 
 // dobbelsteen
 
@@ -126,12 +137,12 @@ let pos = s === 1 ? positie1 : positie2;
 
 if (pos === 6) {
 pos += 12;
-melding.textContent = "⭐ 12 vooruit";
+melding.textContent = "🪿 12 vooruit";
 }
 
 if (pos === 12) {
 pos += 3;
-melding.textContent = "⭐ 3 vooruit";
+melding.textContent = "🪿 3 vooruit";
 }
 
 if (pos === 19) {
@@ -140,7 +151,7 @@ melding.textContent = "↩️ terug naar 10";
 }
 
 if (pos === 31) {
-melding.textContent = "⭐ nog een keer";
+melding.textContent = "🪿 nog een keer";
 nogEenKeer = true;
 }
 
