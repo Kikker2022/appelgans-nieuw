@@ -1,13 +1,16 @@
-console.log("Nieuwe versie geladen");
+import { alleVragen } from "./data/vragen.js";
 
-let dobbel = document.getElementById("dobbel");
-let bord = document.getElementById("bord");
-let worpTekst = document.getElementById("worp");
-let melding = document.getElementById("melding");
-let beurt = document.getElementById("beurt");
+const dobbelsteen = document.getElementById("dobbelsteen");
+const worpTekst = document.getElementById("worp");
+const bord = document.getElementById("bord");
+const beurtTekst = document.getElementById("beurt");
+const melding = document.getElementById("melding");
 
-let score1 = document.getElementById("score1");
-let score2 = document.getElementById("score2");
+const score1 = document.getElementById("score1");
+const score2 = document.getElementById("score2");
+
+const vraag = document.getElementById("vraag");
+const antwoord = document.getElementById("antwoord");
 
 let positie1 = 1;
 let positie2 = 1;
@@ -15,25 +18,28 @@ let positie2 = 1;
 let speler = 1;
 let nogEenKeer = false;
 
-let vragen = [
-{vraag:"Wat meet een tachymeter?",antwoord:"Afstanden en hoeken"},
-{vraag:"Wat is de hoofdstad van Duitsland?",antwoord:"Berlijn"},
-{vraag:"Hoeveel meter is 1 km?",antwoord:"1000"},
-{vraag:"Wat is 6 x 7?",antwoord:"42"}
-];
 
-function tekenBord(){
+// bord maken
+
+function tekenBord() {
 
 bord.innerHTML = "";
 
-for(let i=1;i<=42;i++){
+for (let i = 1; i <= 42; i++) {
 
 let vak = document.createElement("div");
-vak.className = "vak";
+vak.classList.add("vakje");
 vak.textContent = i;
 
-if(i===positie1) vak.textContent="🔵";
-if(i===positie2) vak.textContent="🔴";
+if (i === positie1) {
+vak.textContent = "🔵";
+vak.classList.add("team1");
+}
+
+if (i === positie2) {
+vak.textContent = "🔴";
+vak.classList.add("team2");
+}
 
 bord.appendChild(vak);
 
@@ -43,72 +49,89 @@ bord.appendChild(vak);
 
 tekenBord();
 
-dobbel.onclick=function(){
 
-let worp = Math.floor(Math.random()*6)+1;
+// dobbelsteen
 
-worpTekst.textContent="Je gooide "+worp;
+dobbelsteen.addEventListener("click", () => {
 
-melding.textContent="";
+let worp = Math.floor(Math.random() * 6) + 1;
 
-if(speler===1){
-positie1+=worp;
+worpTekst.textContent = "Je gooide " + worp;
+
+melding.textContent = "";
+
+if (speler === 1) {
+
+positie1 += worp;
 ganzen(1);
-score1.textContent=positie1;
-}else{
-positie2+=worp;
+score1.textContent = positie1;
+
+} else {
+
+positie2 += worp;
 ganzen(2);
-score2.textContent=positie2;
+score2.textContent = positie2;
+
 }
 
-vraag();
+toonVraag();
 
 tekenBord();
 
-if(!nogEenKeer){
-speler=speler===1?2:1;
+if (!nogEenKeer) {
+speler = speler === 1 ? 2 : 1;
 }
 
-beurt.textContent="Team "+speler+" is aan de beurt";
+beurtTekst.textContent = "Team " + speler + " is aan de beurt";
 
-nogEenKeer=false;
+nogEenKeer = false;
+
+});
+
+
+// vragen
+
+function toonVraag() {
+
+let random = alleVragen[Math.floor(Math.random() * alleVragen.length)];
+
+vraag.textContent = "Vraag: " + random.vraag;
+antwoord.textContent = "";
+
+antwoord.onclick = () => {
+antwoord.textContent = "Antwoord: " + random.antwoord;
+};
 
 }
 
-function vraag(){
 
-let v = vragen[Math.floor(Math.random()*vragen.length)];
+// ganzenvakjes
 
-melding.innerHTML=
-"❓ "+v.vraag+
-"<br><button onclick='antwoord(\""+v.antwoord+"\")'>Antwoord</button>";
+function ganzen(s) {
 
+let pos = s === 1 ? positie1 : positie2;
+
+if (pos === 6) {
+pos += 12;
+melding.textContent = "⭐ 12 vooruit";
 }
 
-function antwoord(a){
-melding.innerHTML+="<br>✅ "+a;
+if (pos === 12) {
+pos += 3;
+melding.textContent = "⭐ 3 vooruit";
 }
 
-function ganzen(s){
-
-let pos = s===1?positie1:positie2;
-
-if(pos===6){
-pos+=12;
-melding.textContent="⭐ 12 vooruit";
+if (pos === 19) {
+pos = 10;
+melding.textContent = "↩️ terug naar 10";
 }
 
-if(pos===19){
-pos=10;
-melding.textContent="↩️ terug naar 10";
+if (pos === 31) {
+melding.textContent = "⭐ nog een keer";
+nogEenKeer = true;
 }
 
-if(pos===31){
-melding.textContent="⭐ nog een keer";
-nogEenKeer=true;
-}
-
-if(s===1) positie1=pos;
-else positie2=pos;
+if (s === 1) positie1 = pos;
+else positie2 = pos;
 
 }
