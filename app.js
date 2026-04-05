@@ -18,28 +18,32 @@ let positie2 = 1;
 let speler = 1;
 let nogEenKeer = false;
 
-const ganzenVakjes = [6, 12, 19, 31];
+const ganzenVakjes = [6,12,19,31];
 
 function tekenBord() {
 
 bord.innerHTML = "";
 
-for (let rij = 5; rij >= 0; rij--) {
+let volgorde = [];
 
-let rijDiv = document.createElement("div");
-rijDiv.style.display = "flex";
+for (let rij = 0; rij < 6; rij++) {
 
 let start = rij * 7 + 1;
-
-let vakjes = [];
+let rijVakjes = [];
 
 for (let i = 0; i < 7; i++) {
-vakjes.push(start + i);
+rijVakjes.push(start + i);
 }
 
-if (rij % 2 === 0) vakjes.reverse();
+if (rij % 2 === 1) {
+rijVakjes.reverse();
+}
 
-vakjes.forEach(i => {
+volgorde = volgorde.concat(rijVakjes);
+
+}
+
+volgorde.forEach(i => {
 
 let vak = document.createElement("div");
 vak.classList.add("vakje");
@@ -59,13 +63,9 @@ inhoud = "🔵 🔴";
 
 vak.innerHTML = inhoud;
 
-rijDiv.appendChild(vak);
+bord.appendChild(vak);
 
 });
-
-bord.appendChild(rijDiv);
-
-}
 
 }
 
@@ -73,24 +73,21 @@ tekenBord();
 
 dobbelsteen.addEventListener("click", () => {
 
-let worp = Math.floor(Math.random() * 6) + 1;
+let worp = Math.floor(Math.random()*6)+1;
 
 worpTekst.textContent = "Je gooide " + worp;
 
 melding.textContent = "";
 
 if (speler === 1) {
-
 positie1 += worp;
 ganzen(1);
 score1.innerHTML = "🔵 " + positie1;
-
-} else {
-
+}
+else {
 positie2 += worp;
 ganzen(2);
 score2.innerHTML = "🔴 " + positie2;
-
 }
 
 toonVraag();
@@ -107,9 +104,9 @@ nogEenKeer = false;
 
 });
 
-function toonVraag() {
+function toonVraag(){
 
-let random = alleVragen[Math.floor(Math.random() * alleVragen.length)];
+let random = alleVragen[Math.floor(Math.random()*alleVragen.length)];
 
 vraag.textContent = "Vraag: " + random.vraag;
 
@@ -121,31 +118,31 @@ antwoord.innerHTML = "Antwoord: " + random.antwoord;
 
 }
 
-function ganzen(s) {
+function ganzen(s){
 
-let pos = s === 1 ? positie1 : positie2;
+let pos = s===1 ? positie1 : positie2;
 
-if (pos === 6) {
-pos += 12;
-melding.textContent = "🪿 12 vooruit";
+if(pos===6){
+pos+=12;
+melding.textContent="🪿 12 vooruit";
 }
 
-if (pos === 12) {
-pos += 3;
-melding.textContent = "🪿 3 vooruit";
+if(pos===12){
+pos+=3;
+melding.textContent="🪿 3 vooruit";
 }
 
-if (pos === 19) {
-pos = 10;
-melding.textContent = "↩️ terug naar 10";
+if(pos===19){
+pos=10;
+melding.textContent="↩️ terug naar 10";
 }
 
-if (pos === 31) {
-melding.textContent = "🪿 nog een keer";
-nogEenKeer = true;
+if(pos===31){
+melding.textContent="🪿 nog een keer";
+nogEenKeer=true;
 }
 
-if (s === 1) positie1 = pos;
-else positie2 = pos;
+if(s===1) positie1=pos;
+else positie2=pos;
 
 }
