@@ -18,34 +18,28 @@ let positie2 = 1;
 let speler = 1;
 let nogEenKeer = false;
 
-// ganzen vakjes
 const ganzenVakjes = [6, 12, 19, 31];
-
-// bord tekenen
 
 function tekenBord() {
 
 bord.innerHTML = "";
 
-// slang volgorde
-let volgorde = [];
+for (let rij = 5; rij >= 0; rij--) {
 
-for (let rij = 0; rij < 6; rij++) {
+let rijDiv = document.createElement("div");
+rijDiv.style.display = "flex";
 
 let start = rij * 7 + 1;
-let rijVakjes = [];
+
+let vakjes = [];
 
 for (let i = 0; i < 7; i++) {
-rijVakjes.push(start + i);
+vakjes.push(start + i);
 }
 
-if (rij % 2 === 1) rijVakjes.reverse();
+if (rij % 2 === 0) vakjes.reverse();
 
-volgorde.push(...rijVakjes);
-
-}
-
-volgorde.forEach(i => {
+vakjes.forEach(i => {
 
 let vak = document.createElement("div");
 vak.classList.add("vakje");
@@ -65,15 +59,17 @@ inhoud = "🔵 🔴";
 
 vak.innerHTML = inhoud;
 
-bord.appendChild(vak);
+rijDiv.appendChild(vak);
 
 });
+
+bord.appendChild(rijDiv);
+
+}
 
 }
 
 tekenBord();
-
-// dobbelsteen
 
 dobbelsteen.addEventListener("click", () => {
 
@@ -111,9 +107,6 @@ nogEenKeer = false;
 
 });
 
-
-// vragen
-
 function toonVraag() {
 
 let random = alleVragen[Math.floor(Math.random() * alleVragen.length)];
@@ -127,9 +120,6 @@ antwoord.innerHTML = "Antwoord: " + random.antwoord;
 };
 
 }
-
-
-// ganzenvakjes
 
 function ganzen(s) {
 
