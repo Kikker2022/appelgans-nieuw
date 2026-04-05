@@ -4,7 +4,9 @@ text-align: center;
 }
 
 #bord {
-display: inline-block;
+display: grid;
+grid-template-columns: repeat(7, 70px);
+gap: 5px;
 }
 
 .vakje {
