@@ -1,4 +1,6 @@
-import { alleVragen } from "./data/vragen.js";
+export default[
+
+import vragen from "./data/vragen.js";
 
 const dobbelsteen = document.getElementById("dobbelsteen");
 const worpTekst = document.getElementById("worp");
@@ -154,3 +156,5 @@ if(s===1) positie1=pos;
 else positie2=pos;
 
 }
+
+];
