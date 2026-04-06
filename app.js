@@ -113,6 +113,8 @@ nogEenKeer=false;
 
 function toonVraag(){
 
+if(!alleVragen || alleVragen.length===0) return;
+
 let random=alleVragen[Math.floor(Math.random()*alleVragen.length)];
 
 vraag.textContent="Vraag: "+random.vraag;
@@ -124,7 +126,6 @@ antwoord.textContent="Antwoord: "+random.antwoord;
 };
 
 }
-
 function ganzen(s){
 
 let pos=s===1?positie1:positie2;
