@@ -6,28 +6,8 @@ antwoord: "Amsterdam"
 },
 
 {
-vraag: "Welke provincie ligt in het noorden?",
-antwoord: "Groningen"
-},
-
-{
-vraag: "Welke zee ligt ten noorden van Nederland?",
-antwoord: "Noordzee"
-},
-
-{
-vraag: "Wat is de hoofdplaats van Ooststellingwerf?",
-antwoord: "Oosterwolde"
-},
-
-{
-vraag: "In welke provincie ligt Ooststellingwerf?",
-antwoord: "Friesland"
-},
-
-{
-vraag: "Welke plaats ligt bij het Drents-Friese Wold?",
-antwoord: "Appelscha"
+vraag: "Hoeveel provincies heeft Nederland?",
+antwoord: "12"
 },
 
 {
@@ -38,6 +18,11 @@ antwoord: "Afstanden en hoeken"
 {
 vraag: "Waar staat RTK voor?",
 antwoord: "Realtime Kinematic"
+},
+
+{
+vraag: "Wat is de hoogste berg van Nederland?",
+antwoord: "Vaalserberg"
 }
 
 ];
