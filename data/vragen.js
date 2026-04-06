@@ -1,4 +1,4 @@
-export const alleVragen = [
+export default[
 
 {
 vraag: "Wat is de hoofdstad van Nederland?",
