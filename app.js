@@ -53,7 +53,6 @@ if(i===1) vak.classList.add("start");
 if(i===42) vak.classList.add("finish");
 
 if(ganzenVakjes.includes(i)){
-vak.classList.add("gans");
 vak.textContent="🪿";
 }else{
 vak.textContent=i;
@@ -113,7 +112,7 @@ nogEenKeer=false;
 
 function toonVraag(){
 
-if(!alleVragen || alleVragen.length===0) return;
+if(!alleVragen) return;
 
 let random=alleVragen[Math.floor(Math.random()*alleVragen.length)];
 
@@ -126,6 +125,7 @@ antwoord.textContent="Antwoord: "+random.antwoord;
 };
 
 }
+
 function ganzen(s){
 
 let pos=s===1?positie1:positie2;
