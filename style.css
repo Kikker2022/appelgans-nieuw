@@ -16,27 +16,23 @@ height:60px;
 display:flex;
 align-items:center;
 justify-content:center;
-}
-
-.team1 {
-background:lightblue;
-}
-
-.team2 {
-background:salmon;
+position:relative;
 }
 
 .speler {
 width:18px;
 height:18px;
 border-radius:50%;
-margin:auto;
+position:absolute;
+bottom:3px;
 }
 
 .team1 {
 background:blue;
+left:3px;
 }
 
 .team2 {
 background:red;
+right:3px;
 }
