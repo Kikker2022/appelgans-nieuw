@@ -25,3 +25,18 @@ background:lightblue;
 .team2 {
 background:salmon;
 }
+
+.speler {
+width:18px;
+height:18px;
+border-radius:50%;
+margin:auto;
+}
+
+.team1 {
+background:blue;
+}
+
+.team2 {
+background:red;
+}
