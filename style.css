@@ -19,6 +19,8 @@ justify-content:center;
 position:relative;
 }
 
+/* bolletjes op bord */
+
 .speler {
 width:18px;
 height:18px;
@@ -35,4 +37,26 @@ left:3px;
 .team2 {
 background:red;
 right:3px;
+}
+
+/* bolletjes bij team namen */
+
+.legend {
+display:inline-block;
+width:14px;
+height:14px;
+border-radius:50%;
+margin-right:6px;
+}
+
+.legend.team1 {
+background:blue;
+position:relative;
+left:0;
+}
+
+.legend.team2 {
+background:red;
+position:relative;
+left:0;
 }
