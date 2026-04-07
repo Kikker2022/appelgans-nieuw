@@ -11,6 +11,7 @@ let positie2 = 0;
 let team = 1;
 
 function maakBord() {
+bord.innerHTML = "";
 for (let i = 1; i <= 42; i++) {
 const vak = document.createElement("div");
 vak.classList.add("vak");
@@ -42,18 +43,6 @@ bol.classList.add("speler","team2");
 vak.appendChild(bol);
 }
 
-}
-
-document.querySelectorAll(".vak").forEach(v => {
-v.classList.remove("team1");
-v.classList.remove("team2");
-});
-
-if (positie1 > 0)
-document.getElementById("vak"+positie1)?.classList.add("team1");
-
-if (positie2 > 0)
-document.getElementById("vak"+positie2)?.classList.add("team2");
 }
 
 function nieuweVraag() {
