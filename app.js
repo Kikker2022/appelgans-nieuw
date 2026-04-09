@@ -13,9 +13,14 @@ let positie1 = 0;
 let positie2 = 0;
 let score1 = 0;
 let score2 = 0;
+
+let skip1 = false;
+let skip2 = false;
+
 let team = 1;
 
 const finish = 42;
+const put = 19;
 const ganzen = [5, 9, 14, 18, 23, 27, 32, 36, 41];
 
 function maakBord() {
@@ -46,6 +51,9 @@ vak.id = "vak" + nr;
 if (nr === finish) {
 vak.textContent = "🏁";
 }
+else if (nr === put) {
+vak.textContent = "🕳";
+}
 else if (ganzen.includes(nr)) {
 vak.innerHTML = `<span class="gans">🪿</span>`;
 }
@@ -69,6 +77,9 @@ const nr = Number(v.id.replace("vak", ""));
 
 if (nr === finish) {
 v.textContent = "🏁";
+}
+else if (nr === put) {
+v.textContent = "🕳";
 }
 else if (ganzen.includes(nr)) {
 v.innerHTML = `<span class="gans">🪿</span>`;
@@ -125,6 +136,20 @@ return pos;
 
 gooiBtn.addEventListener("click", () => {
 
+if (team === 1 && skip1) {
+skip1 = false;
+team = 2;
+beurtEl.textContent = "Team 2 is aan de beurt";
+return;
+}
+
+if (team === 2 && skip2) {
+skip2 = false;
+team = 1;
+beurtEl.textContent = "Team 1 is aan de beurt";
+return;
+}
+
 const worp = Math.floor(Math.random() * 6) + 1;
 
 if (team === 1) {
@@ -133,6 +158,11 @@ positie1 += worp;
 positie1 = bounceBack(positie1);
 
 updateBord();
+
+if (positie1 === put) {
+alert("🕳 Team 1 valt in de put! Beurt overslaan");
+skip1 = true;
+}
 
 if (ganzen.includes(positie1)) {
 
@@ -155,6 +185,11 @@ positie2 += worp;
 positie2 = bounceBack(positie2);
 
 updateBord();
+
+if (positie2 === put) {
+alert("🕳 Team 2 valt in de put! Beurt overslaan");
+skip2 = true;
+}
 
 if (ganzen.includes(positie2)) {
 
