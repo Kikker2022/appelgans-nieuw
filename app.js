@@ -15,6 +15,7 @@ let score1 = 0;
 let score2 = 0;
 let team = 1;
 
+const finish = 42;
 const ganzen = [5, 9, 14, 18, 23, 27, 32, 36, 41];
 
 function maakBord() {
@@ -42,9 +43,13 @@ const vak = document.createElement("div");
 vak.classList.add("vak");
 vak.id = "vak" + nr;
 
-if (ganzen.includes(nr)) {
+if (nr === finish) {
+vak.textContent = "🏁";
+}
+else if (ganzen.includes(nr)) {
 vak.innerHTML = `<span class="gans">🪿</span>`;
-} else {
+}
+else {
 vak.textContent = nr;
 }
 
@@ -60,11 +65,15 @@ function updateBord() {
 
 document.querySelectorAll(".vak").forEach(v => {
 
-const nr = v.id.replace("vak", "");
+const nr = Number(v.id.replace("vak", ""));
 
-if (ganzen.includes(Number(nr))) {
+if (nr === finish) {
+v.textContent = "🏁";
+}
+else if (ganzen.includes(nr)) {
 v.innerHTML = `<span class="gans">🪿</span>`;
-} else {
+}
+else {
 v.innerHTML = nr;
 }
 
@@ -96,6 +105,24 @@ vraagEl.textContent = random.vraag;
 antwoordEl.textContent = random.antwoord;
 }
 
+function checkFinish() {
+if (positie1 === finish) {
+alert("🎉 Team 1 wint!");
+gooiBtn.disabled = true;
+}
+if (positie2 === finish) {
+alert("🎉 Team 2 wint!");
+gooiBtn.disabled = true;
+}
+}
+
+function bounceBack(pos) {
+if (pos > finish) {
+return finish - (pos - finish);
+}
+return pos;
+}
+
 gooiBtn.addEventListener("click", () => {
 
 const worp = Math.floor(Math.random() * 6) + 1;
@@ -103,9 +130,11 @@ const worp = Math.floor(Math.random() * 6) + 1;
 if (team === 1) {
 
 positie1 += worp;
+positie1 = bounceBack(positie1);
 
 if (ganzen.includes(positie1)) {
 positie1 += worp;
+positie1 = bounceBack(positie1);
 }
 
 score1++;
@@ -115,9 +144,11 @@ team = 2;
 } else {
 
 positie2 += worp;
+positie2 = bounceBack(positie2);
 
 if (ganzen.includes(positie2)) {
 positie2 += worp;
+positie2 = bounceBack(positie2);
 }
 
 score2++;
@@ -128,6 +159,7 @@ team = 1;
 
 updateBord();
 nieuweVraag();
+checkFinish();
 
 beurtEl.textContent = "Team " + team + " is aan de beurt";
 
