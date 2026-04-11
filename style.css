@@ -1,76 +1,33 @@
 body {
-font-family: Arial;
-padding:20px;
+font-family: Arial, sans-serif;
+text-align: center;
+background: #f5f7fb;
 }
 
 #bord {
-display:grid;
-grid-template-columns: repeat(7,60px);
-gap:5px;
-margin-top:20px;
+display: grid;
+grid-template-columns: repeat(7, 70px);
+gap: 6px;
+justify-content: center;
+margin: 20px auto;
 }
 
 .vak {
-border:1px solid #ccc;
-height:60px;
-display:flex;
-align-items:center;
-justify-content:center;
-position:relative;
+width: 70px;
+height: 70px;
+background: white;
+border-radius: 10px;
+border: 2px solid #d0d6e0;
+display: flex;
+align-items: center;
+justify-content: center;
+font-weight: bold;
+font-size: 16px;
+position: relative;
 }
 
-/* bolletjes op bord */
-
-.speler {
-width:18px;
-height:18px;
-border-radius:50%;
-position:absolute;
-bottom:3px;
-}
-
-.team1 {
-background:blue;
-left:3px;
-}
-
-.team2 {
-background:red;
-right:3px;
-}
-
-/* bolletjes bij team namen */
-
-.legend {
-display:inline-block;
-width:14px;
-height:14px;
-border-radius:50%;
-margin-right:6px;
-}
-
-.legend.team1 {
-background:blue;
-position:relative;
-left:0;
-}
-
-.legend.team2 {
-background:red;
-position:relative;
-left:0;
-}
-
-/* grotere ganzen */
-
-.gans {
-font-size: 28px;
-}
-
-.put {
-font-size: 42px;
-display: block;
-text-align: center;
+.vak:nth-child(odd) {
+background: #f0f4ff;
 }
 
 .speler {
@@ -83,25 +40,56 @@ right: 4px;
 }
 
 .team1 {
-background: blue;
+background: #2196f3;
 }
 
 .team2 {
-background: red;
+background: #e53935;
 }
 
-.vak {
-position: relative;
+.gans {
+font-size: 30px;
+}
+
+.put {
+font-size: 42px;
 }
 
 .brug {
-font-size: 32px;
-display: block;
-text-align: center;
+font-size: 30px;
 }
 
 .gevangenis {
-font-size: 32px;
-display: block;
-text-align: center;
+font-size: 30px;
+}
+
+button {
+padding: 10px 20px;
+font-size: 16px;
+border-radius: 8px;
+border: none;
+background: #2196f3;
+color: white;
+cursor: pointer;
+}
+
+button:hover {
+background: #1976d2;
+}
+
+#vraag {
+margin-top: 20px;
+font-size: 18px;
+font-weight: bold;
+}
+
+#antwoord {
+margin-top: 10px;
+font-size: 16px;
+color: #555;
+}
+
+.score {
+margin-top: 10px;
+font-size: 18px;
 }
