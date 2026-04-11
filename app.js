@@ -156,7 +156,15 @@ gooiBtn.addEventListener("click", () => {
 if (team === 1 && skip1 > 0) {
 skip1--;
 team = 2;
-beurtEl.textContent = "Team 2 is aan de beurt";
+beurtEl.textContent = "Team " + team + " is aan de beurt";
+
+beurtEl.classList.remove("team1Beurt","team2Beurt");
+
+if(team === 1){
+beurtEl.classList.add("team1Beurt");
+} else {
+beurtEl.classList.add("team2Beurt");
+}
 return;
 }
 
