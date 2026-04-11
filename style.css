@@ -32,17 +32,16 @@ justify-content: center;
 font-weight: bold;
 font-size: 16px;
 position: relative;
-transition: all 0.3s ease;
 }
 
 .vak:nth-child(odd) {
 background: #f0f4ff;
 }
 
-/* finish vak */
+/* finish vak (42) */
 
-.vak:last-child {
-background: #fff4cc;
+#vak42 {
+background: #fff4cc !important;
 font-size: 28px;
 border: 3px solid #ffc107;
 }
@@ -56,7 +55,13 @@ border-radius: 50%;
 position: absolute;
 bottom: 4px;
 right: 4px;
-transition: all 0.4s ease;
+animation: pop 0.3s ease;
+}
+
+@keyframes pop {
+0% { transform: scale(0.3); }
+80% { transform: scale(1.2); }
+100% { transform: scale(1); }
 }
 
 .team1 {
