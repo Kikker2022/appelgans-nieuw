@@ -9,25 +9,34 @@ background: #f5f7fb;
 #bord {
 display: grid;
 grid-template-columns: repeat(10, 1fr);
-gap: 3px;
-max-width: 100%;
+gap: 2px;
+max-width: 100vw;
 margin: auto;
+padding: 4px;
 }
 
 .vak {
 aspect-ratio: 1;
-background: white;
+background: #f4f8ff;
+border: 1px solid #cbd6ee;
 border-radius: 6px;
-font-size: 10px;
+font-size: 9px;
 display: flex;
 align-items: center;
 justify-content: center;
 position: relative;
 }
 
+/* finish */
+#vak140 {
+background: #ffe082;
+font-weight: bold;
+}
+
+/* spelers */
 .speler {
-width: 8px;
-height: 8px;
+width: 10px;
+height: 10px;
 border-radius: 50%;
 position: absolute;
 bottom: 2px;
@@ -35,11 +44,11 @@ right: 2px;
 }
 
 .team1 {
-background: blue;
+background: #2196f3;
 }
 
 .team2 {
-background: red;
+background: #e53935;
 }
 
 /* speciale vakjes */
