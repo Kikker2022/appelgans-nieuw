@@ -152,3 +152,16 @@ background: #2196f3;
 .team2Beurt {
 background: #e53935;
 }
+
+@media (max-width:600px){
+
+.vak {
+font-size:8px;
+}
+
+.speler {
+width:8px;
+height:8px;
+}
+
+}
