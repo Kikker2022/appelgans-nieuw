@@ -21,15 +21,16 @@ let skip2 = 0;
 let team = 1;
 
 const finish = 140;
+
 const putten = [13, 38, 64, 89, 115];
 const bruggen = [6, 52, 97];
-const brugNaar = 12;
 const gevangenissen = [31, 78, 124];
-const ganzen = [];
 
-for (let i = 9; i < 140; i += 9) {
+const ganzen = [];
+for (let i = 9; i < finish; i += 9) {
 ganzen.push(i);
 }
+
 function maakBord() {
 
 bord.innerHTML = "";
@@ -61,17 +62,17 @@ vak.id = "vak" + nr;
 if (nr === finish) {
 vak.textContent = "🏁";
 }
-else if (nr === put) {
-vak.innerHTML = `<span class="put">🪣</span>`;
+else if (putten.includes(nr)) {
+vak.innerHTML = "🪣";
 }
-else if (nr === brug) {
-vak.innerHTML = `<span class="brug">🌉</span>`;
+else if (bruggen.includes(nr)) {
+vak.innerHTML = "🌉";
 }
-else if (nr === gevangenis) {
-vak.innerHTML = `<span class="gevangenis">🔒</span>`;
+else if (gevangenissen.includes(nr)) {
+vak.innerHTML = "🔒";
 }
 else if (ganzen.includes(nr)) {
-vak.innerHTML = `<span class="gans">🪿</span>`;
+vak.innerHTML = "🪿";
 }
 else {
 vak.textContent = nr;
@@ -95,16 +96,16 @@ if (nr === finish) {
 v.textContent = "🏁";
 }
 else if (putten.includes(nr)) {
-v.innerHTML = `<span class="put">🪣</span>`;
+v.innerHTML = "🪣";
 }
 else if (bruggen.includes(nr)) {
-v.innerHTML = `<span class="brug">🌉</span>`;
+v.innerHTML = "🌉";
 }
 else if (gevangenissen.includes(nr)) {
-v.innerHTML = `<span class="gevangenis">🔒</span>`;
+v.innerHTML = "🔒";
 }
 else if (ganzen.includes(nr)) {
-v.innerHTML = `<span class="gans">🪿</span>`;
+v.innerHTML = "🪿";
 }
 else {
 v.innerHTML = nr;
@@ -138,22 +139,23 @@ vraagEl.textContent = random.vraag;
 antwoordEl.textContent = random.antwoord;
 }
 
-function checkFinish() {
-if (positie1 === finish) {
-alert("🎉 Team 1 wint!");
-gooiBtn.disabled = true;
-}
-if (positie2 === finish) {
-alert("🎉 Team 2 wint!");
-gooiBtn.disabled = true;
-}
-}
-
 function bounceBack(pos) {
 if (pos > finish) {
 return finish - (pos - finish);
 }
 return pos;
+}
+
+function checkFinish() {
+if (positie1 === finish) {
+alert("🎉 Team 1 wint!");
+gooiBtn.disabled = true;
+}
+
+if (positie2 === finish) {
+alert("🎉 Team 2 wint!");
+gooiBtn.disabled = true;
+}
 }
 
 function updateBeurt() {
@@ -189,48 +191,28 @@ return;
 const worp = Math.floor(Math.random() * 6) + 1;
 
 dobbelsteen.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][worp-1];
-dobbelsteen.classList.add("roll");
-
-setTimeout(() => {
-dobbelsteen.classList.remove("roll");
-}, 600);
 
 if (team === 1) {
 
 positie1 += worp;
 positie1 = bounceBack(positie1);
 
-updateBord();
-
-if (positie1 === brug) {
-alert("🌉 Brug! Ga naar vak 12");
-positie1 = brugNaar;
-updateBord();
-}
-
-if (positie1 === put) {
-alert("🪣 Team 1 valt in de put!");
+if (putten.includes(positie1)) {
 skip1 = 1;
 }
 
-if (positie1 === gevangenis) {
-alert("🔒 Team 1 in gevangenis!");
+if (gevangenissen.includes(positie1)) {
 skip1 = 2;
 }
 
 if (ganzen.includes(positie1)) {
-
-setTimeout(() => {
 positie1 += worp;
 positie1 = bounceBack(positie1);
-updateBord();
-checkFinish();
-}, 900);
-
 }
 
 score1++;
 score1El.textContent = score1;
+
 team = 2;
 
 } else {
@@ -238,41 +220,26 @@ team = 2;
 positie2 += worp;
 positie2 = bounceBack(positie2);
 
-updateBord();
-
-if (positie2 === brug) {
-alert("🌉 Brug! Ga naar vak 12");
-positie2 = brugNaar;
-updateBord();
-}
-
-if (positie2 === put) {
-alert("🪣 Team 2 valt in de put!");
+if (putten.includes(positie2)) {
 skip2 = 1;
 }
 
-if (positie2 === gevangenis) {
-alert("🔒 Team 2 in gevangenis!");
+if (gevangenissen.includes(positie2)) {
 skip2 = 2;
 }
 
 if (ganzen.includes(positie2)) {
-
-setTimeout(() => {
 positie2 += worp;
 positie2 = bounceBack(positie2);
-updateBord();
-checkFinish();
-}, 900);
-
 }
 
 score2++;
 score2El.textContent = score2;
-team = 1;
 
+team = 1;
 }
 
+updateBord();
 nieuweVraag();
 checkFinish();
 updateBeurt();
