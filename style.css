@@ -1,103 +1,71 @@
-body {
-font-family: Arial, sans-serif;
-text-align: center;
-background: #f0f4ff;
-margin: 0;
-padding: 10px;
+body{
+font-family: Arial;
+text-align:center;
+background:#f0f4ff;
 }
 
-#bord {
-display: grid;
-grid-template-columns: repeat(10, 1fr);
-gap: 2px;
-max-width: 100vw;
-margin: auto;
+#bord{
+display:grid;
+grid-template-columns:repeat(10,1fr);
+gap:3px;
+max-width:100%;
+margin:auto;
 }
 
-.vak {
-aspect-ratio: 1;
-background: #f4f8ff;
-border: 1px solid #cbd6ee;
-border-radius: 6px;
-font-size: 9px;
-display: flex;
-align-items: center;
-justify-content: center;
-position: relative;
+.vak{
+aspect-ratio:1;
+background:#f4f8ff;
+border:1px solid #cbd6ee;
+border-radius:6px;
+font-size:12px;
+display:flex;
+align-items:center;
+justify-content:center;
+position:relative;
 }
 
-.vak:nth-child(even) {
-background: #e9f0ff;
+.vak:nth-child(even){
+background:#e9f0ff;
 }
 
-#vak140 {
-background: #ffe082;
-font-size: 16px;
-font-weight: bold;
+#vak140{
+background:#ffe082;
+font-size:18px;
 }
 
-.speler {
-width: 10px;
-height: 10px;
-border-radius: 50%;
-position: absolute;
-bottom: 2px;
-right: 2px;
+.speler{
+width:14px;
+height:14px;
+border-radius:50%;
+position:absolute;
+bottom:2px;
+right:2px;
 }
 
-.team1 {
-background: #2196f3;
+.team1{
+background:#2196f3;
 }
 
-.team2 {
-background: #e53935;
+.team2{
+background:#e53935;
 }
 
-#beurt {
-margin: 10px auto;
-padding: 10px;
-width: 200px;
-border-radius: 10px;
-color: white;
-font-weight: bold;
+#dobbelsteen{
+font-size:40px;
+margin:10px;
 }
 
-.team1Beurt {
-background: #2196f3;
+#beurt{
+margin:10px;
+padding:10px;
+color:white;
+border-radius:10px;
 }
 
-.team2Beurt {
-background: #e53935;
+.team1Beurt{
+background:#2196f3;
 }
 
-#dobbelsteen {
-font-size: 40px;
-margin: 10px;
-}
-
-button {
-padding: 10px 20px;
-font-size: 16px;
-border-radius: 8px;
-border: none;
-background: #2196f3;
-color: white;
-}
-
-.score {
-margin: 10px;
-font-size: 18px;
-}
-
-@media (max-width:600px){
-
-.vak {
-font-size:8px;
-}
-
-.speler {
-width:8px;
-height:8px;
-}
-
+.team2Beurt{
+background:#e53935;
 }
