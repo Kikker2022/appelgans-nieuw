@@ -29,7 +29,8 @@ position: relative;
 
 /* finish */
 #vak140 {
-background: #ffe082;
+background: #ffe082 !important;
+font-size: 16px;
 font-weight: bold;
 }
 
@@ -155,10 +156,13 @@ background: #e53935;
 
 @media (max-width:600px){
 
-.vak {
-font-size:8px;
+.vak:nth-child(odd) {
+background: #f4f8ff;
 }
 
+.vak:nth-child(even) {
+background: #e9f0ff;
+}
 .speler {
 width:8px;
 height:8px;
