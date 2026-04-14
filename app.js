@@ -21,11 +21,10 @@ let skip2 = 0;
 let team = 1;
 
 const finish = 140;
-const put = 19;
-const brug = 6;
+const putten = [13, 38, 64, 89, 115];
+const bruggen = [6, 52, 97];
 const brugNaar = 12;
-const gevangenis = 31;
-
+const gevangenissen = [31, 78, 124];
 const ganzen = [];
 
 for (let i = 9; i < 140; i += 9) {
@@ -95,13 +94,13 @@ const nr = Number(v.id.replace("vak", ""));
 if (nr === finish) {
 v.textContent = "🏁";
 }
-else if (nr === put) {
+else if (putten.includes(nr)) {
 v.innerHTML = `<span class="put">🪣</span>`;
 }
-else if (nr === brug) {
+else if (bruggen.includes(nr)) {
 v.innerHTML = `<span class="brug">🌉</span>`;
 }
-else if (nr === gevangenis) {
+else if (gevangenissen.includes(nr)) {
 v.innerHTML = `<span class="gevangenis">🔒</span>`;
 }
 else if (ganzen.includes(nr)) {
