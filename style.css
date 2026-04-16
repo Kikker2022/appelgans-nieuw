@@ -21,6 +21,7 @@ margin: auto;
 
 .vakje {
 background: #e9f0ff;
+border: 1px solid #b8c7ff;
 border-radius: 8px;
 position: relative;
 aspect-ratio: 1 / 1;
