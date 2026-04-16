@@ -11,80 +11,80 @@ display: grid;
 grid-template-columns: repeat(10, 1fr);
 gap: 4px;
 padding: 8px;
-max-width: 900px;
+max-width: 100%;
 margin: auto;
 }
 
 .vak {
-background: #e9f0ff;
-border: 1px solid #b8c7ff;
-border-radius: 8px;
-aspect-ratio: 1;
+position: relative;
+background: #e6f0ff;
+border-radius: 10px;
+aspect-ratio: 1 / 1;
 display: flex;
 align-items: center;
 justify-content: center;
-font-size: 12px;
-position: relative;
-}
-
-.vak:nth-child(even) {
-background: #dfe8ff;
-}
-
-/* iconen */
-.vak span {
 font-size: 18px;
+font-weight: bold;
 }
 
-/* finish */
+/* Icoontjes groter */
+.vak span {
+font-size: 28px;
+}
+
+/* Finish groter */
 #vak140 {
-background: #ffe082;
-font-size: 22px;
-font-weight: bold;
+font-size: 34px;
+background: #ffeaa7;
 }
 
 /* spelers */
 .speler {
-width: 12px;
-height: 12px;
+width: 14px;
+height: 14px;
 border-radius: 50%;
 position: absolute;
+bottom: 3px;
+right: 3px;
 }
 
 .team1 {
-background: blue;
-bottom: 2px;
-left: 2px;
+background: red;
 }
 
 .team2 {
-background: red;
-bottom: 2px;
-right: 2px;
+background: blue;
 }
 
 .team3 {
 background: green;
-top: 2px;
-left: 2px;
 }
 
 .team4 {
 background: orange;
-top: 2px;
-right: 2px;
 }
 
-/* mobiel */
-@media (max-width:600px){
-
-.vak {
-font-size:10px;
+/* dobbelsteen groter */
+#dobbelsteen {
+font-size: 60px;
+margin: 10px;
 }
 
-.speler {
-width:10px;
-height:10px;
+button {
+padding: 12px 20px;
+font-size: 18px;
+border-radius: 8px;
+border: none;
+background: #4a90e2;
+color: white;
 }
 
+#vraag {
+font-size: 18px;
+margin-top: 10px;
+}
+
+#antwoord {
+font-size: 16px;
+color: #666;
 }
