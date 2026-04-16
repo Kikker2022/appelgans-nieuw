@@ -6,6 +6,7 @@ const antwoordEl = document.getElementById("antwoord");
 const gooiBtn = document.getElementById("gooi");
 const beurtEl = document.getElementById("beurt");
 const dobbelsteen = document.getElementById("dobbelsteen");
+const scoreEl = document.getElementById("score");
 
 const finish = 140;
 
@@ -125,6 +126,17 @@ gooiBtn.disabled = true;
 
 }
 
+function updateScore(){
+
+scoreEl.innerHTML = `
+Team 1: ${posities[0]}
+Team 2: ${posities[1]}
+Team 3: ${posities[2]}
+Team 4: ${posities[3]}
+`;
+
+}
+
 function updateBeurt(){
 
 beurtEl.textContent = "Team " + (team+1) + " is aan de beurt";
@@ -184,6 +196,7 @@ updateBord();
 nieuweVraag();
 checkFinish();
 updateBeurt();
+updateScore();
 
 });
 
