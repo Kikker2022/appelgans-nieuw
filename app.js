@@ -128,8 +128,11 @@ gooiBtn.disabled = true;
 
 function updateBeurt(){
 
-beurtEl.textContent = "Team " + team + " is aan de beurt";
+function updateBeurt(){
 
+beurtEl.textContent = "Team " + (team+1) + " is aan de beurt";
+
+}
 beurtEl.classList.remove("team1Beurt","team2Beurt");
 
 posities[team] += worp;
