@@ -7,6 +7,18 @@ const gooiBtn = document.getElementById("gooi");
 const beurtEl = document.getElementById("beurt");
 const dobbelsteen = document.getElementById("dobbelsteen");
 const scoreEl = document.getElementById("score");
+const melding = document.getElementById("melding");
+const meldingTekst = document.getElementById("melding-tekst");
+const meldingOk = document.getElementById("melding-ok");
+
+function toonMelding(tekst){
+meldingTekst.textContent = tekst;
+melding.style.display = "flex";
+}
+
+meldingOk.addEventListener("click", () => {
+melding.style.display = "none";
+});
 
 const finish = 140;
 
@@ -168,25 +180,25 @@ posities[team] = bounceBack(posities[team]);
 
 // gans
 if(ganzen.includes(posities[team])){
-alert("🪿 " + teamNaam() + " landt op een gans! Nog een keer vooruit");
+toonMelding("🪿 " + teamNaam() + " op een gans! Nog een keer vooruit");
 posities[team] += worp;
 }
 
 // put
 if(putten.includes(posities[team])){
-alert("🪣 " + teamNaam() + " zit in de put! Beurt overslaan");
+toonMelding("🪣 " + teamNaam() + " zit in de put! Beurt overslaan");
 skip[team] = 1;
 }
 
 // gevangenis
 if(gevangenissen.includes(posities[team])){
-alert("🔒 " + teamNaam() + " zit in de gevangenis! 2 beurten overslaan");
+toonMelding("🔒 " + teamNaam() + " zit in de gevangenis! 2 beurten overslaan");
 skip[team] = 2;
 }
 
 // brug
 if(bruggen.includes(posities[team])){
-alert("🌉 " + teamNaam() + " over de brug! Extra vooruit");
+toonMelding("🌉 " + teamNaam() + " over de brug! Extra vooruit");
 posities[team] += 5;
 }
 
