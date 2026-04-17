@@ -126,6 +126,10 @@ gooiBtn.disabled = true;
 
 }
 
+function teamNaam(){
+return "Team " + (team+1);
+}
+
 function updateScore(){
 
 scoreEl.innerHTML = `
@@ -164,25 +168,25 @@ posities[team] = bounceBack(posities[team]);
 
 // gans
 if(ganzen.includes(posities[team])){
-alert("🪿 Gans! Nog een keer vooruit");
+alert("🪿 " + teamNaam() + " landt op een gans! Nog een keer vooruit");
 posities[team] += worp;
 }
 
 // put
 if(putten.includes(posities[team])){
-alert("🪣 In de put! Beurt overslaan");
+alert("🪣 " + teamNaam() + " zit in de put! Beurt overslaan");
 skip[team] = 1;
 }
 
 // gevangenis
 if(gevangenissen.includes(posities[team])){
-alert("🔒 Gevangenis! 2 beurten overslaan");
+alert("🔒 " + teamNaam() + " zit in de gevangenis! 2 beurten overslaan");
 skip[team] = 2;
 }
 
 // brug
 if(bruggen.includes(posities[team])){
-alert("🌉 Brug! Extra vooruit");
+alert("🌉 " + teamNaam() + " over de brug! Extra vooruit");
 posities[team] += 5;
 }
 
