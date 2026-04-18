@@ -10,6 +10,9 @@ const scoreEl = document.getElementById("score");
 const melding = document.getElementById("melding");
 const meldingTekst = document.getElementById("melding-tekst");
 const meldingOk = document.getElementById("melding-ok");
+const geluidDobbel = new Audio("sounds/dobbel.mp3");
+const geluidGans = new Audio("sounds/gans.mp3");
+const geluidFinish = new Audio("sounds/finish.mp3");
 
 function toonMelding(tekst){
 meldingTekst.textContent = tekst;
@@ -172,6 +175,7 @@ return;
 }
 
 const worp = Math.floor(Math.random()*6)+1;
+geluidDobbel.play();
 
 dobbelsteen.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][worp-1];
 
@@ -180,8 +184,18 @@ posities[team] = bounceBack(posities[team]);
 
 // gans
 if(ganzen.includes(posities[team])){
+
 toonMelding("🪿 " + teamNaam() + " op een gans! Nog een keer vooruit");
+
+geluidGans.play();
+
+updateBord();
+
+setTimeout(() => {
 posities[team] += worp;
+updateBord();
+}, 800);
+
 }
 
 // put
@@ -196,10 +210,17 @@ toonMelding("🔒 " + teamNaam() + " zit in de gevangenis! 2 beurten overslaan")
 skip[team] = 2;
 }
 
-// brug
 if(bruggen.includes(posities[team])){
-toonMelding("🌉 " + teamNaam() + " over de brug! Extra vooruit");
+
+toonMelding("🌉 " + teamNaam() + " over de brug! +5");
+
+updateBord();
+
+setTimeout(() => {
 posities[team] += 5;
+updateBord();
+}, 800);
+
 }
 
 team++;
@@ -211,6 +232,7 @@ team = 0;
 updateBord();
 nieuweVraag();
 checkFinish();
+geluidFinish.play();
 updateBeurt();
 updateScore();
 
