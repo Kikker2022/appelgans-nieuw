@@ -15,9 +15,9 @@ const meldingOk = document.getElementById("melding-ok");
 const finish = 140;
 
 // geluiden
-const geluidDobbel = new Audio("./sounds/dobbel.mp3");
-const geluidGans = new Audio("./sounds/gans.mp3");
-const geluidFinish = new Audio("./sounds/finish.mp3");
+const dobbelGeluid = new Audio("sounds/dobbel.mp3");
+const finishGeluid = new Audio("sounds/finish.mp3");
+const gansGeluid = new Audio("sounds/gans.mp3");
 
 let posities = [0,0,0,0];
 let skip = [0,0,0,0];
