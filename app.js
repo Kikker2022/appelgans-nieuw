@@ -151,7 +151,7 @@ posities.forEach((pos,index)=>{
 
 if(pos === finish){
 
-geluidFinish.play();
+finishGeluid.play();
 toonMelding("🎉 Team " + (index+1) + " wint!");
 
 gooiBtn.disabled = true;
@@ -184,8 +184,8 @@ return;
 
 const worp = Math.floor(Math.random()*6)+1;
 
-geluidDobbel.play();
-
+dobbelGeluid.play();
+  
 dobbelsteen.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][worp-1];
 
 posities[team] += worp;
@@ -197,7 +197,7 @@ setTimeout(() => {
 
 if(ganzen.includes(posities[team])){
 
-geluidGans.play();
+gansGeluid.play();
 toonMelding("🪿 " + teamNaam() + " op een gans!");
 
 updateBord();
