@@ -27,6 +27,22 @@ font-size: clamp(10px, 2vw, 16px);
 font-weight: bold;
 }
 
+#gooi {
+  font-size: 22px;
+  padding: 15px 30px;
+  border-radius: 12px;
+  border: none;
+  background-color: #007BFF;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+#gooi:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
 /* iconen dynamisch */
 .vak span {
 font-size: clamp(14px, 3vw, 26px);
@@ -40,18 +56,16 @@ background: #ffeaa7;
 
 /* spelers */
 .speler {
-width: clamp(8px, 1.8vw, 14px);
-height: clamp(8px, 1.8vw, 14px);
-border-radius: 50%;
-position: absolute;
-bottom: 2px;
-right: 2px;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  margin: 2px auto;
 }
 
-.team1 { background: red; }
-.team2 { background: blue; }
-.team3 { background: green; }
-.team4 { background: orange; }
+.team1 { background-color: red; }
+.team2 { background-color: blue; }
+.team3 { background-color: green; }
+.team4 { background-color: orange; }
 
 /* dobbelsteen */
 #dobbelsteen {
