@@ -134,6 +134,30 @@ border: none;
 border-radius: 8px;
 }
 
+.vak {
+  border: 1px solid #ccc;
+}
+
+.finish {
+  background-color: gold;
+}
+
+.gans {
+  background-color: #a8e6a1; /* groen */
+}
+
+.brug {
+  background-color: #a1d6e6; /* blauw */
+}
+
+.put {
+  background-color: #e6cfa1; /* bruin */
+}
+
+.gevangenis {
+  background-color: #e6a1a1; /* rood */
+}
+
 header {
 background: white;
 padding: 6px;
