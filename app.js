@@ -188,9 +188,11 @@ dobbelGeluid.play();
   
 dobbelsteen.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][worp-1];
 
-posities[team] += worp;
+posities[team] += worp; // bij gans
 posities[team] = bounceBack(posities[team]);
 
+posities[team] += worp;
+posities[team] = bounceBack(posities[team]);
 updateBord();
 
 setTimeout(() => {
@@ -220,6 +222,9 @@ updateBord();
 setTimeout(()=>{
 
 posities[team] += 5;
+posities[team] = bounceBack(posities[team]);
+updateBord();
+  
 updateBord();
 
 },600);
