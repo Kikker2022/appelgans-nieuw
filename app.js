@@ -34,7 +34,8 @@ for (let i = 9; i < finish; i += 9) {
 }
 
 function teamNaam(){
-    return "Team " + (team+1);
+    const kleuren = ["🔴 Rood", "🔵 Blauw", "🟢 Groen", "🟠 Oranje"];
+    return kleuren[team];
 }
 
 function toonMelding(tekst){
@@ -136,7 +137,7 @@ function checkFinish(){
 }
 
 function updateBeurt(){
-    beurtEl.textContent = teamNaam() + " is aan de beurt";
+   beurtEl.innerHTML = `<strong>${teamNaam()}</strong> is aan de beurt`;
 }
 
 gooiBtn.addEventListener("click", () => {
@@ -158,11 +159,27 @@ gooiBtn.addEventListener("click", () => {
 
     dobbelsteen.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][worp-1];
 
-    posities[team] += worp;
-    posities[team] = bounceBack(posities[team]);
-    updateBord();
+   function beweegSpeler(stappen, callback){
+
+    let teller = 0;
+
+    const interval = setInterval(() => {
+
+        beweegSpeler(worp, () => {
+
+        teller++;
+
+        if(teller >= stappen){
+            clearInterval(interval);
+            if(callback) callback();
+        }
+
+    }, 300); // snelheid (lager = sneller)
+
+}
 
     setTimeout(() => {
+        });
 
         // 🪿 GANS
         if(ganzen.includes(posities[team])){
@@ -205,7 +222,8 @@ gooiBtn.addEventListener("click", () => {
         updateBeurt();
         nieuweVraag();
 
-    }, 600);
+   beweegSpeler(worp, () => {
+   ...
 
 });
 
