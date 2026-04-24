@@ -99,34 +99,34 @@ function maakBord(){
 // 🔄 bord updaten
 function updateBord(){
     document.querySelectorAll(".vak").forEach(v => {
-        const nr = Number(v.id.replace("vak",""));
+    const nr = Number(v.id.replace("vak",""));
 
-        v.className = "vak";
+    v.className = "vak";
 
-        if(nr === finish){
-            v.innerHTML = "🏁";
-            v.classList.add("finish");
-        }
-        else if(ganzen.includes(nr)){
-            v.innerHTML = "🪿<br>" + nr;
-            v.classList.add("gans");
-        }
-        else if(bruggen.includes(nr)){
-            v.innerHTML = "🌉<br>" + nr;
-            v.classList.add("brug");
-        }
-        else if(putten.includes(nr)){
-            v.innerHTML = "🪣<br>" + nr;
-            v.classList.add("put");
-        }
-        else if(gevangenissen.includes(nr)){
-            v.innerHTML = "🔒<br>" + nr;
-            v.classList.add("gevangenis");
-        }
-        else {
-            v.innerHTML = nr;
-        }
-    });
+    if(nr === finish){
+        v.innerHTML = "🏁";
+        v.classList.add("finish");
+    }
+    else if(ganzen.includes(nr)){
+        v.innerHTML = `<span class="icoon">🪿</span>${nr}`;
+        v.classList.add("gans");
+    }
+    else if(bruggen.includes(nr)){
+        v.innerHTML = `<span class="icoon">🌉</span>${nr}`;
+        v.classList.add("brug");
+    }
+    else if(putten.includes(nr)){
+        v.innerHTML = `<span class="icoon">🪣</span>${nr}`;
+        v.classList.add("put");
+    }
+    else if(gevangenissen.includes(nr)){
+        v.innerHTML = `<span class="icoon">🔒</span>${nr}`;
+        v.classList.add("gevangenis");
+    }
+    else {
+        v.innerHTML = nr;
+    }
+});
 
     posities.forEach((positie, index)=>{
         if(positie > 0){
