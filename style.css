@@ -64,8 +64,8 @@ font-size: clamp(14px, 3vw, 26px);
 
 .icoon {
   display: block;
-  font-size: 24px;
-  margin-bottom: 2px;
+  font-size: 26px;
+  line-height: 1;
 }
 
 /* finish */
