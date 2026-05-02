@@ -1,207 +1,129 @@
+/* ===== BASIS ===== */
 body {
-font-family: Arial, sans-serif;
-text-align: center;
-background: #f5f7fb;
-margin: 0;
-padding: 0;
-}
-
-#bord {
-display: grid;
-grid-template-columns: repeat(10, 1fr);
-gap: 3px;
-padding: 6px;
-max-width: 100%;
-margin: auto;
-}
-
-.vak {
-position: relative;
-background: #e6f0ff;
-border-radius: 8px;
-aspect-ratio: 1 / 1;
-display: flex;
-align-items: center;
-justify-content: center;
-font-size: clamp(10px, 2vw, 16px);
-font-weight: bold;
-}
-
-.vak {
-  font-size: 12px;
+  font-family: Arial, sans-serif;
   text-align: center;
-}
-
-.vak {
-  font-size: 14px;
-}
-
-.vak span {
-  display: block;
-  font-size: 22px;
-}
-
-#gooi {
-  font-size: 22px;
-  padding: 15px 30px;
-  border-radius: 12px;
-  border: none;
-  background-color: #007BFF;
-  color: white;
-  cursor: pointer;
-  transition: 0.2s;
-}
-
-#gooi:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-/* iconen dynamisch */
-.vak span {
-font-size: clamp(14px, 3vw, 26px);
-}
-
-.icoon {
-  display: block;
-  font-size: 26px;
-  line-height: 1;
-}
-
-/* finish */
-#vak140 {
-font-size: clamp(18px, 4vw, 34px);
-background: #ffeaa7;
-}
-
-/* spelers */
-.speler {
-  width: 18px;
-  height: 18px;
-  border-radius: 50%;
-  margin: 2px auto;
-}
-
-.team1 { background-color: red; }
-.team2 { background-color: blue; }
-.team3 { background-color: green; }
-.team4 { background-color: orange; }
-
-/* dobbelsteen */
-#dobbelsteen {
-font-size: clamp(30px, 6vw, 60px);
-margin: 8px;
-}
-
-button {
-padding: 10px 16px;
-font-size: clamp(14px, 3vw, 18px);
-border-radius: 8px;
-border: none;
-background: #4a90e2;
-color: white;
-}
-
-#vraag {
-font-size: clamp(14px, 3vw, 18px);
-margin-top: 8px;
-}
-
-#antwoord {
-font-size: clamp(12px, 2.5vw, 16px);
-color: #666;
-}
-
-/* score balk */
-#score {
-display: flex;
-justify-content: space-around;
-padding: 8px;
-font-weight: bold;
-font-size: clamp(12px, 3vw, 16px);
-}
-
-.melding {
-position: fixed;
-top: 0;
-left: 0;
-width: 100%;
-height: 100%;
-background: rgba(0,0,0,0.5);
-display: none;
-align-items: center;
-justify-content: center;
-z-index: 1000;
-}
-
-.melding-box {
-background: white;
-padding: 20px;
-border-radius: 12px;
-text-align: center;
-width: 80%;
-max-width: 300px;
-font-size: 18px;
-}
-
-#melding-ok {
-margin-top: 15px;
-padding: 10px 20px;
-font-size: 16px;
-background: #4CAF50;
-color: white;
-border: none;
-border-radius: 8px;
-}
-
-.vak {
-  border: 1px solid #ccc;
-}
-
-.finish {
-  background-color: gold;
-}
-
-.gans {
-  background-color: #a8e6a1; /* groen */
-}
-
-.brug {
-  background-color: #a1d6e6; /* blauw */
-}
-
-.put {
-  background-color: #e6cfa1; /* bruin */
-}
-
-.gevangenis {
-  background-color: #e6a1a1; /* rood */
-}
-
-header {
-background: white;
-padding: 6px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+  background: #f4f7fb;
+  margin: 0;
+  padding: 0;
 }
 
 h1 {
-font-size: clamp(16px,3vw,22px);
-margin: 4px 0;
+  margin: 15px 0;
 }
 
-#spelinfo {
-display: flex;
-align-items: center;
-justify-content: space-around;
-}
-
+/* ===== INFOBALK ===== */
 #beurt {
-font-weight: bold;
-font-size: clamp(12px,2.5vw,16px);
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px;
+}
+
+#score {
+  margin: 10px;
+  font-size: 16px;
+}
+
+/* ===== DOBBEL ===== */
+#dobbel-container {
+  margin: 15px;
 }
 
 #gooi {
-font-size: clamp(16px,4vw,22px);
-padding: 10px 18px;
-background: #4CAF50;
+  padding: 10px 20px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#dobbelsteen {
+  font-size: 30px;
+  margin-top: 10px;
+}
+
+/* ===== BORD ===== */
+#bord {
+  display: grid;
+  grid-template-columns: repeat(7, 70px);
+  gap: 6px;
+  justify-content: center;
+  margin: 20px auto;
+  max-width: 520px;
+}
+
+/* vakjes */
+.vak {
+  background: white;
+  border: 2px solid #333;
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  position: relative;
+}
+
+/* zigzag effect (ganzenbord) */
+.vak:nth-child(odd) {
+  background: #eef3ff;
+}
+
+/* ===== SPELERS ===== */
+.speler1 {
+  background: #4da6ff !important;
+  color: white;
+}
+
+.speler2 {
+  background: #4dff88 !important;
+  color: black;
+}
+
+/* ===== SPECIALE VAKJES ===== */
+.vak:nth-child(5),
+.vak:nth-child(9),
+.vak:nth-child(14),
+.vak:nth-child(18),
+.vak:nth-child(23),
+.vak:nth-child(27),
+.vak:nth-child(32),
+.vak:nth-child(36) {
+  border: 3px solid orange;
+}
+
+/* ===== VRAGEN ===== */
+#vraag-container {
+  margin: 20px auto;
+  max-width: 500px;
+  padding: 15px;
+  background: white;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+}
+
+#vraag {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+#antwoord {
+  font-size: 16px;
+  margin: 10px 0;
+  cursor: pointer;
+  color: #333;
+}
+
+/* hover hint */
+#antwoord:hover {
+  background: #f0f0f0;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 600px) {
+  #bord {
+    grid-template-columns: repeat(6, 50px);
+  }
+
+  .vak {
+    height: 50px;
+    font-size: 12px;
+  }
 }
