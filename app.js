@@ -1,261 +1,143 @@
+// ===== DATA IMPORT =====
 import vragen from "./data/vragen.js";
 
-const bord = document.getElementById("bord");
+// ===== ELEMENTEN =====
+const bordEl = document.getElementById("bord");
 const vraagEl = document.getElementById("vraag");
 const antwoordEl = document.getElementById("antwoord");
 const gooiBtn = document.getElementById("gooi");
 const beurtEl = document.getElementById("beurt");
-const dobbelsteen = document.getElementById("dobbelsteen");
 const scoreEl = document.getElementById("score");
+const dobbelsteenEl = document.getElementById("dobbelsteen");
 
-const melding = document.getElementById("melding");
-const meldingTekst = document.getElementById("melding-tekst");
-const meldingOk = document.getElementById("melding-ok");
+// ===== SPEL STATUS =====
+let spelers = [
+  { naam: "Team 1", positie: 0, score: 0 },
+  { naam: "Team 2", positie: 0, score: 0 }
+];
 
-const finish = 140;
+let huidigeSpeler = 0;
+const finish = 42;
 
-// 🔊 GELUIDEN
-const dobbelGeluid = new Audio("/dobbel.mp3");
-const finishGeluid = new Audio("/finish.mp3");
-const gansGeluid = new Audio("/gans.mp3");
+// ===== GELUID =====
+const sounds = {
+  dobbel: new Audio("/dobbel.mp3"),
+  gans: new Audio("/gans.mp3"),
+  finish: new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg")
+};
 
-// veilige play (voorkomt browser errors)
-function speelGeluid(g){
-    g.currentTime = 0;
-    g.play().catch(()=>{});
-}
-
-let posities = [0,0,0,0];
-let skip = [0,0,0,0];
-let team = 0;
-
-const putten = [13, 38, 64, 89, 115];
-const bruggen = [6, 52, 97];
-const gevangenissen = [31, 78, 124];
-
-// 🪿 ganzen
-const ganzen = [];
-for (let i = 9; i < finish; i += 9) {
-    ganzen.push(i);
-}
-
-function teamNaam(){
-    const kleuren = ["🔴 Rood","🔵 Blauw","🟢 Groen","🟠 Oranje"];
-    return kleuren[team];
-}
-
-function toonMelding(tekst){
-    meldingTekst.textContent = tekst;
-    melding.style.display = "flex";
-}
-
-meldingOk.addEventListener("click", () => {
-    melding.style.display = "none";
+Object.values(sounds).forEach(s => {
+  s.preload = "auto";
+  s.volume = 0.8;
 });
 
-// 🧱 BORD MAKEN (links → rechts)
-function maakBord(){
-    bord.innerHTML = "";
-    let nummer = 1;
-
-    for(let rij = 0; rij < 14; rij++){
-        for(let kolom = 0; kolom < 10; kolom++){
-
-            const nr = nummer;
-            const vak = document.createElement("div");
-            vak.classList.add("vak");
-            vak.id = "vak" + nr;
-
-            if(nr === finish){
-                vak.innerHTML = "🏁";
-                vak.classList.add("finish");
-            }
-            else if(ganzen.includes(nr)){
-               vak.innerHTML = `<span class="icoon">🪿</span>${nr}`;
-                vak.classList.add("gans");
-            }
-            else if(bruggen.includes(nr)){
-                vak.innerHTML = `<span class="icoon">🌉</span>${nr}`;
-                vak.classList.add("brug");
-            }
-            else if(putten.includes(nr)){
-                vak.innerHTML = `<span class="icoon">🪣</span>${nr}`;
-                vak.classList.add("put");
-            }
-            else if(gevangenissen.includes(nr)){
-                vak.innerHTML = `<span class="icoon">🔒</span>${nr}`;
-                vak.classList.add("gevangenis");
-            }
-            else {
-                vak.innerHTML = nr;
-            }
-
-            bord.appendChild(vak);
-            nummer++;
-        }
-    }
+function speelGeluid(sound) {
+  try {
+    sound.currentTime = 0;
+    sound.play().catch(() => {});
+  } catch (e) {
+    console.log("Geluid fout:", e);
+  }
 }
 
-// 🔄 bord updaten
-function updateBord(){
-    document.querySelectorAll(".vak").forEach(v => {
-    const nr = Number(v.id.replace("vak",""));
-
-    v.className = "vak";
-
-    if(nr === finish){
-        v.innerHTML = "🏁";
-        v.classList.add("finish");
-    }
-    else if(ganzen.includes(nr)){
-        v.innerHTML = `<span class="icoon">🪿</span>${nr}`;
-        v.classList.add("gans");
-    }
-    else if(bruggen.includes(nr)){
-        v.innerHTML = `<span class="icoon">🌉</span>${nr}`;
-        v.classList.add("brug");
-    }
-    else if(putten.includes(nr)){
-        v.innerHTML = `<span class="icoon">🪣</span>${nr}`;
-        v.classList.add("put");
-    }
-    else if(gevangenissen.includes(nr)){
-        v.innerHTML = `<span class="icoon">🔒</span>${nr}`;
-        v.classList.add("gevangenis");
-    }
-    else {
-        v.innerHTML = nr;
-    }
-});
-
-    posities.forEach((positie, index)=>{
-        if(positie > 0){
-            const vak = document.getElementById("vak"+positie);
-            const speler = document.createElement("div");
-            speler.classList.add("speler","team"+(index+1));
-            vak.appendChild(speler);
-        }
-    });
+// ===== BORD MAKEN =====
+function maakBord() {
+  bordEl.innerHTML = "";
+  for (let i = 1; i <= finish; i++) {
+    const vak = document.createElement("div");
+    vak.classList.add("vak");
+    vak.textContent = i;
+    vak.id = "vak-" + i;
+    bordEl.appendChild(vak);
+  }
 }
 
-function updateScore(){
-    scoreEl.innerHTML = `
-    🔴 ${posities[0]} | 🔵 ${posities[1]} | 🟢 ${posities[2]} | 🟠 ${posities[3]}
-    `;
-}
+// ===== SPELER TONEN =====
+function updateBord() {
+  document.querySelectorAll(".vak").forEach(v => v.classList.remove("speler1", "speler2"));
 
-function bounceBack(pos){
-    if(pos > finish){
-        return finish - (pos - finish);
+  spelers.forEach((speler, index) => {
+    if (speler.positie > 0) {
+      const vak = document.getElementById("vak-" + speler.positie);
+      if (vak) vak.classList.add("speler" + (index + 1));
     }
-    return pos;
+  });
 }
 
-function nieuweVraag(){
-    const random = vragen[Math.floor(Math.random()*vragen.length)];
-    vraagEl.textContent = random.vraag;
+// ===== SCORE =====
+function updateScore() {
+  scoreEl.innerHTML = spelers
+    .map(s => `${s.naam}: ${s.score}`)
+    .join(" | ");
+}
+
+// ===== BEURT =====
+function updateBeurt() {
+  beurtEl.textContent = spelers[huidigeSpeler].naam + " is aan de beurt";
+}
+
+// ===== DOBBEL =====
+function gooiDobbelsteen() {
+  const worp = Math.floor(Math.random() * 6) + 1;
+  dobbelsteenEl.textContent = worp;
+
+  speelGeluid(sounds.dobbel);
+
+  let speler = spelers[huidigeSpeler];
+  speler.positie += worp;
+
+  if (speler.positie > finish) {
+    speler.positie = finish - (speler.positie - finish); // terugkaatsen
+  }
+
+  checkSpecialeVakjes(speler);
+  updateBord();
+
+  toonVraag();
+
+  updateScore();
+}
+
+// ===== GANZEN VAKJES =====
+function checkSpecialeVakjes(speler) {
+  const ganzen = [5, 9, 14, 18, 23, 27, 32, 36];
+
+  if (ganzen.includes(speler.positie)) {
+    speelGeluid(sounds.gans);
+    speler.positie += 3;
+  }
+
+  if (speler.positie >= finish) {
+    speler.positie = finish;
+    speelGeluid(sounds.finish);
+    alert(speler.naam + " heeft gewonnen!");
+  }
+}
+
+// ===== VRAGEN =====
+function toonVraag() {
+  const random = vragen[Math.floor(Math.random() * vragen.length)];
+
+  vraagEl.textContent = random.vraag;
+  antwoordEl.textContent = "";
+
+  // klik om antwoord te tonen
+  antwoordEl.onclick = () => {
     antwoordEl.textContent = random.antwoord;
+    volgendeBeurt();
+  };
 }
 
-function checkFinish(){
-    posities.forEach((pos,index)=>{
-        if(pos === finish){
-            speelGeluid(finishGeluid);
-            toonMelding("🎉 " + ["🔴","🔵","🟢","🟠"][index] + " wint!");
-            gooiBtn.disabled = true;
-        }
-    });
+// ===== VOLGENDE BEURT =====
+function volgendeBeurt() {
+  huidigeSpeler = (huidigeSpeler + 1) % spelers.length;
+  updateBeurt();
 }
 
-function updateBeurt(){
-    beurtEl.innerHTML = `<strong>${teamNaam()}</strong> is aan de beurt`;
-}
-
-// 🎞️ animatie
-function beweegSpeler(stappen, callback){
-    let teller = 0;
-
-    const interval = setInterval(() => {
-
-        posities[team]++;
-        posities[team] = bounceBack(posities[team]);
-
-        updateBord();
-
-        teller++;
-
-        if(teller >= stappen){
-            clearInterval(interval);
-            if(callback) callback();
-        }
-
-    }, 250);
-}
-
-gooiBtn.addEventListener("click", () => {
-
-    if(skip[team] > 0){
-        toonMelding(teamNaam() + " moet een beurt overslaan");
-        skip[team]--;
-
-        team = (team + 1) % 4;
-        updateBeurt();
-        return;
-    }
-
-    const worp = Math.floor(Math.random()*6)+1;
-
-    speelGeluid(dobbelGeluid);
-
-    dobbelsteen.textContent = ["⚀","⚁","⚂","⚃","⚄","⚅"][worp-1];
-
-    beweegSpeler(worp, () => {
-
-        if(ganzen.includes(posities[team])){
-            speelGeluid(gansGeluid);
-            toonMelding("🪿 " + teamNaam() + " → nog eens " + worp);
-
-            beweegSpeler(worp, vervolg);
-        } else {
-            vervolg();
-        }
-
-    });
-
-    function vervolg(){
-
-        if(bruggen.includes(posities[team])){
-            toonMelding("🌉 " + teamNaam() + " → +5");
-
-            beweegSpeler(5, afronden);
-        } else {
-            afronden();
-        }
-    }
-
-    function afronden(){
-
-        if(putten.includes(posities[team])){
-            toonMelding("🪣 " + teamNaam() + " → 1 beurt overslaan");
-            skip[team] = 1;
-        }
-
-        if(gevangenissen.includes(posities[team])){
-            toonMelding("🔒 " + teamNaam() + " → 2 beurten overslaan");
-            skip[team] = 2;
-        }
-
-        checkFinish();
-
-        team = (team + 1) % 4;
-
-        updateScore();
-        updateBeurt();
-        nieuweVraag();
-    }
-
-});
+// ===== INIT =====
+gooiBtn.addEventListener("click", gooiDobbelsteen);
 
 maakBord();
+updateBord();
 updateScore();
 updateBeurt();
