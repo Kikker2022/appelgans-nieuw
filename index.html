@@ -1,46 +1,38 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Appelgans</title>
-<link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Appelgans</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<header>
+  <h1>🪿 Appelgans</h1>
 
-<h1>🪿 Appelgans gemeente Ooststellingwerf</h1>
+  <!-- INFO -->
+  <div id="beurt"></div>
+  <div id="score"></div>
 
-<div id="spelinfo">
-<div id="beurt">Team 1 is aan de beurt</div>
-<div id="dobbelsteen">⚀</div>
-<button id="gooi">🎲 Gooi</button>
-</div>
-
-</header>
-
-<div id="score">
-Team 1: 0  
-Team 2: 0  
-Team 3: 0  
-Team 4: 0  
-</div>
-
-<div id="bord"></div>
-
-<div id="vraag"></div>
-<div id="antwoord"></div>
-
-<div id="melding" class="melding">
-  <div class="melding-box">
-    <div id="melding-tekst"></div>
-    <button id="melding-ok">OK</button>
+  <!-- DOBBEL -->
+  <div id="dobbel-container">
+    <button id="gooi">🎲 Gooi</button>
+    <div id="dobbelsteen">-</div>
   </div>
-</div>
-  
-<script type="module" src="app.js"></script>
+
+  <!-- BORD -->
+  <div id="bord"></div>
+
+  <!-- VRAGEN -->
+  <div id="vraag-container">
+    <h2>Vraag</h2>
+    <div id="vraag">Klik op "Gooi" om te beginnen</div>
+
+    <h2>Antwoord (klik om te tonen)</h2>
+    <div id="antwoord">...</div>
+  </div>
+
+  <script type="module" src="app.js"></script>
 
 </body>
 </html>
