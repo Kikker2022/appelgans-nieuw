@@ -1,145 +1,99 @@
-// ===== DATA IMPORT =====
-import vragen from "./data/vragen.js";
+let currentTeam = 1;
+let positions = [0, 0];
 
-// ===== ELEMENTEN =====
-const bordEl = document.getElementById("bord");
-const vraagEl = document.getElementById("vraag");
-const antwoordEl = document.getElementById("antwoord");
-const gooiBtn = document.getElementById("gooi");
-const beurtEl = document.getElementById("beurt");
-const scoreEl = document.getElementById("score");
-const dobbelsteenEl = document.getElementById("dobbelsteen");
+const board = document.getElementById("board");
+const turnText = document.getElementById("turn");
+const diceText = document.getElementById("diceResult");
+const questionText = document.getElementById("question");
+const answerText = document.getElementById("answer");
 
-// ===== SPEL STATUS =====
-let spelers = [
-  { naam: "Team 1", positie: 0, score: 0 },
-  { naam: "Team 2", positie: 0, score: 0 }
-];
+// geluiden
+const soundGans = new Audio("public/gans.mp3");
+const soundPut = new Audio("public/dubbel.mp3");
+const soundWin = new Audio("public/finish.mp3");
 
-let huidigeSpeler = 0;
-const finish = 42;
-
-// ===== GELUID =====
-const sounds = {
-  dobbel: new Audio("/dobbel.mp3"),
-  gans: new Audio("/gans.mp3"),
-  finish: new Audio("https://actions.google.com/sounds/v1/cartoon/clang_and_wobble.ogg")
+// speciale vakken
+const specialTiles = {
+  6: "gans",
+  12: "gans",
+  19: "put",
+  31: "gevangenis",
+  42: "finish"
 };
 
-Object.values(sounds).forEach(s => {
-  s.preload = "auto";
-  s.volume = 0.8;
-});
+// bord maken
+for (let i = 1; i <= 42; i++) {
+  const cell = document.createElement("div");
+  cell.classList.add("cell");
 
-function speelGeluid(sound) {
-  try {
-    sound.currentTime = 0;
-    sound.play().catch(() => {});
-  } catch (e) {
-    console.log("Geluid fout:", e);
+  if (specialTiles[i]) {
+    cell.classList.add("special");
+    cell.innerText = i + " 🪿";
+  } else {
+    cell.innerText = i;
   }
+
+  board.appendChild(cell);
 }
 
-// ===== BORD MAKEN =====
-function maakBord() {
-  bordEl.innerHTML = "";
-  for (let i = 1; i <= finish; i++) {
-    const vak = document.createElement("div");
-    vak.classList.add("vak");
-    vak.textContent = i;
-    vak.id = "vak-" + i;
-    bordEl.appendChild(vak);
-  }
-}
+function updateBoard() {
+  const cells = document.querySelectorAll(".cell");
+  cells.forEach(c => c.classList.remove("team1", "team2"));
 
-// ===== SPELER TONEN =====
-function updateBord() {
-  document.querySelectorAll(".vak").forEach(v => v.classList.remove("speler1", "speler2"));
-
-  spelers.forEach((speler, index) => {
-    if (speler.positie > 0) {
-      const vak = document.getElementById("vak-" + speler.positie);
-      if (vak) vak.classList.add("speler" + (index + 1));
+  positions.forEach((pos, i) => {
+    if (pos > 0) {
+      cells[pos - 1].classList.add(i === 0 ? "team1" : "team2");
     }
   });
 }
 
-// ===== SCORE =====
-function updateScore() {
-  scoreEl.innerHTML = spelers
-    .map(s => `${s.naam}: ${s.score}`)
-    .join(" | ");
-}
+function rollDice() {
+  const roll = Math.floor(Math.random() * 6) + 1;
+  diceText.innerText = "Je gooide: " + roll;
 
-// ===== BEURT =====
-function updateBeurt() {
-  beurtEl.textContent = spelers[huidigeSpeler].naam + " is aan de beurt";
-}
+  let index = currentTeam - 1;
+  positions[index] += roll;
 
-// ===== DOBBEL =====
-function gooiDobbelsteen() {
-  const worp = Math.floor(Math.random() * 6) + 1;
-  dobbelsteenEl.textContent = worp;
+  if (positions[index] > 42) positions[index] = 42;
 
-  speelGeluid(sounds.dobbel);
+  handleSpecial(positions[index], index);
 
-  let speler = spelers[huidigeSpeler];
-  speler.positie += worp;
+  updateBoard();
+  loadQuestion();
 
-  if (speler.positie > finish) {
-    speler.positie = finish - (speler.positie - finish); // terugkaatsen
+  if (positions[index] === 42) {
+    soundWin.play();
+    alert("Team " + currentTeam + " wint!");
+    return;
   }
 
-  checkSpecialeVakjes(speler);
-  updateBord();
-
-  toonVraag();
-
-  updateScore();
+  currentTeam = currentTeam === 1 ? 2 : 1;
+  turnText.innerText = "Team " + currentTeam + " is aan de beurt";
 }
 
-// ===== GANZEN VAKJES =====
-function checkSpecialeVakjes(speler) {
-  const ganzen = [5, 9, 14, 18, 23, 27, 32, 36];
-
-  if (ganzen.includes(speler.positie)) {
-    speelGeluid(sounds.gans);
-    speler.positie += 3;
+function handleSpecial(pos, index) {
+  if (specialTiles[pos] === "gans") {
+    soundGans.play();
+    positions[index] += 6;
   }
 
-  if (speler.positie >= finish) {
-    speler.positie = finish;
-    speelGeluid(sounds.finish);
-    alert(speler.naam + " heeft gewonnen!");
+  if (specialTiles[pos] === "put") {
+    soundPut.play();
+    alert("In de put! Beurt overslaan.");
+  }
+
+  if (specialTiles[pos] === "gevangenis") {
+    alert("Gevangenis! Beurt overslaan.");
   }
 }
 
-// ===== VRAGEN =====
-function toonVraag() {
-  const random = vragen[Math.floor(Math.random() * vragen.length)];
-
-  vraagEl.textContent = random.vraag;
-  antwoordEl.textContent = "";
-
-  // klik om antwoord te tonen
-  antwoordEl.onclick = () => {
-    antwoordEl.textContent = random.antwoord;
-    volgendeBeurt();
-  };
+function loadQuestion() {
+  const q = vragen[Math.floor(Math.random() * vragen.length)];
+  questionText.innerText = q.vraag;
+  answerText.innerText = q.antwoord;
+  answerText.style.display = "none";
 }
 
-// ===== VOLGENDE BEURT =====
-function volgendeBeurt() {
-  huidigeSpeler = (huidigeSpeler + 1) % spelers.length;
-  updateBeurt();
+function showAnswer() {
+  answerText.style.display = "block";
 }
-
-// ===== INIT =====
-gooiBtn.addEventListener("click", gooiDobbelsteen);
-
-maakBord();
-updateBord();
-
-
-updateScore();
-updateBeurt();
