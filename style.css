@@ -1,129 +1,47 @@
-/* ===== BASIS ===== */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #f4f7fb;
-  margin: 0;
-  padding: 0;
+  background: #f0f8ff;
 }
 
-h1 {
-  margin: 15px 0;
-}
-
-/* ===== INFOBALK ===== */
-#beurt {
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px;
-}
-
-#score {
-  margin: 10px;
-  font-size: 16px;
-}
-
-/* ===== DOBBEL ===== */
-#dobbel-container {
-  margin: 15px;
-}
-
-#gooi {
-  padding: 10px 20px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-#dobbelsteen {
-  font-size: 30px;
-  margin-top: 10px;
-}
-
-/* ===== BORD ===== */
-#bord {
+#board {
   display: grid;
-  grid-template-columns: repeat(7, 70px);
-  gap: 6px;
+  grid-template-columns: repeat(7, 60px);
+  gap: 5px;
   justify-content: center;
-  margin: 20px auto;
-  max-width: 520px;
+  margin: 20px;
 }
 
-/* vakjes */
-.vak {
+.cell {
+  width: 60px;
+  height: 60px;
   background: white;
-  border: 2px solid #333;
-  height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-  position: relative;
+  border: 1px solid #ccc;
+  line-height: 60px;
+  font-size: 14px;
 }
 
-/* zigzag effect (ganzenbord) */
-.vak:nth-child(odd) {
-  background: #eef3ff;
+.special {
+  background: #ffd700;
 }
 
-/* ===== SPELERS ===== */
-.speler1 {
-  background: #4da6ff !important;
-  color: white;
+.team1 {
+  background: lightblue;
 }
 
-.speler2 {
-  background: #4dff88 !important;
-  color: black;
+.team2 {
+  background: lightcoral;
 }
 
-/* ===== SPECIALE VAKJES ===== */
-.vak:nth-child(5),
-.vak:nth-child(9),
-.vak:nth-child(14),
-.vak:nth-child(18),
-.vak:nth-child(23),
-.vak:nth-child(27),
-.vak:nth-child(32),
-.vak:nth-child(36) {
-  border: 3px solid orange;
+#controls {
+  margin: 20px;
 }
 
-/* ===== VRAGEN ===== */
-#vraag-container {
-  margin: 20px auto;
-  max-width: 500px;
-  padding: 15px;
-  background: white;
-  border: 2px solid #ccc;
-  border-radius: 10px;
-}
-
-#vraag {
-  font-size: 18px;
-  margin: 10px 0;
-}
-
-#antwoord {
+button {
+  padding: 10px;
   font-size: 16px;
-  margin: 10px 0;
-  cursor: pointer;
-  color: #333;
 }
 
-/* hover hint */
-#antwoord:hover {
-  background: #f0f0f0;
-}
-
-/* ===== RESPONSIVE ===== */
-@media (max-width: 600px) {
-  #bord {
-    grid-template-columns: repeat(6, 50px);
-  }
-
-  .vak {
-    height: 50px;
-    font-size: 12px;
-  }
+#questionBox {
+  margin-top: 20px;
 }
