@@ -3,10 +3,10 @@ const TOTAL_CELLS = 140;
 let currentTeam = 0;
 
 const teams = [
-{ color:"blue", icon:"🔵", position:0, skip:false },
-{ color:"red", icon:"🔴", position:0, skip:false },
-{ color:"green", icon:"🟢", position:0, skip:false },
-{ color:"purple", icon:"🟣", position:0, skip:false }
+{ color:"blue", icon:"🔵", position:0, skipTurns:0 },
+{ color:"red", icon:"🔴", position:0, skipTurns:0 },
+{ color:"green", icon:"🟢", position:0, skipTurns:0 },
+{ color:"purple", icon:"🟣", position:0, skipTurns:0 }
 ];
 
 const board = document.getElementById("board");
@@ -109,11 +109,13 @@ async function rollDice(){
 
 const team=teams[currentTeam];
 
-if(team.skip){
+if(team.skipTurns > 0){
 
-showPopup(`${team.icon} slaat een beurt over`);
+showPopup(
+`${team.icon} slaat een beurt over`
+);
 
-team.skip=false;
+team.skipTurns--;
 
 nextTurn();
 
@@ -223,7 +225,7 @@ soundPit.play();
 
 showPopup("🕳️ In de put! Beurt overslaan");
 
-team.skip = true;
+team.skipTurns = 1;
 
 }
 
@@ -233,7 +235,7 @@ soundPrison.play();
 
 showPopup("⛓️ Gevangenis! Beurt overslaan");
 
-team.skip = true;
+team.skipTurns = 2;
 
 }
 
@@ -243,7 +245,7 @@ soundInn.play();
 
 showPopup("🍺 Herberg! Beurt overslaan");
 
-team.skip = true;
+team.skipTurns = 1;
 
 }
 
