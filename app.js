@@ -22,6 +22,7 @@ const soundWin = new Audio("public/finish.mp3");
 const soundPrison = new Audio("public/gevangenis.mp3");
 const soundPit = new Audio("public/put.mp3");
 const soundInn = new Audio("public/herberg.mp3");
+const soundBridge = new Audio("public/brug.mp3");
 
 const specialTiles = {
 6:"gans",
