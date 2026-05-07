@@ -1,47 +1,171 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f0f8ff;
+body{
+margin:0;
+padding:20px;
+font-family:Arial, sans-serif;
+background:#eef5ff;
 }
 
-#board {
-  display: grid;
-  grid-template-columns: repeat(7, 60px);
-  gap: 5px;
-  justify-content: center;
-  margin: 20px;
+h1{
+text-align:center;
+font-size:42px;
+margin-bottom:20px;
 }
 
-.cell {
-  width: 60px;
-  height: 60px;
-  background: white;
-  border: 1px solid #ccc;
-  line-height: 60px;
-  font-size: 14px;
+#gameContainer{
+display:flex;
+gap:20px;
+align-items:flex-start;
 }
 
-.special {
-  background: #ffd700;
+#leftPanel{
+width:320px;
+position:sticky;
+top:10px;
 }
 
-.team1 {
-  background: lightblue;
+#board{
+display:grid;
+grid-template-columns:repeat(10,70px);
+gap:6px;
 }
 
-.team2 {
-  background: lightcoral;
+.cell{
+width:70px;
+height:70px;
+border-radius:12px;
+border:2px solid #999;
+background:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-weight:bold;
+position:relative;
+font-size:14px;
+transition:0.3s;
 }
 
-#controls {
-  margin: 20px;
+.cell span{
+font-size:34px;
 }
 
-button {
-  padding: 10px;
-  font-size: 16px;
+.gans{
+background:#ffe66d;
 }
 
-#questionBox {
-  margin-top: 20px;
+.brug{
+background:#9bf6ff;
+}
+
+.put{
+background:#bdb2ff;
+}
+
+.herberg{
+background:#ffd6a5;
+}
+
+.gevangenis{
+background:#ffadad;
+}
+
+.dood{
+background:#caffbf;
+}
+
+.finish{
+background:#ffea00;
+}
+
+.pawns{
+position:absolute;
+bottom:4px;
+display:flex;
+gap:4px;
+}
+
+.pawn{
+width:16px;
+height:16px;
+border-radius:50%;
+border:2px solid white;
+}
+
+.red{
+background:red;
+}
+
+.blue{
+background:blue;
+}
+
+.green{
+background:green;
+}
+
+.purple{
+background:purple;
+}
+
+button{
+padding:18px;
+font-size:20px;
+border:none;
+border-radius:14px;
+cursor:pointer;
+background:#0077ff;
+color:white;
+margin-top:10px;
+width:100%;
+}
+
+button:hover{
+transform:scale(1.03);
+}
+
+#controls,
+#questionBox,
+#popup{
+background:white;
+padding:20px;
+border-radius:16px;
+margin-bottom:20px;
+box-shadow:0 4px 10px rgba(0,0,0,0.1);
+}
+
+#popup{
+display:none;
+font-size:20px;
+font-weight:bold;
+}
+
+#question{
+font-size:20px;
+min-height:80px;
+}
+
+#answer{
+display:none;
+margin-top:15px;
+font-size:18px;
+font-weight:bold;
+color:#007700;
+}
+
+@media(max-width:1000px){
+
+#gameContainer{
+flex-direction:column;
+}
+
+#leftPanel{
+width:100%;
+position:relative;
+}
+
+#board{
+grid-template-columns:repeat(5,70px);
+justify-content:center;
+}
+
 }
