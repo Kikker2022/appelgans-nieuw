@@ -2,29 +2,49 @@
 <html lang="nl">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Appelgans</title>
+
 <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<h1>🪿 Appelgans</h1>
+<h1>🪿 Appelgans 🪿</h1>
 
-<div id="game">
+<div id="gameContainer">
 
-  <div id="board"></div>
+<div id="leftPanel">
 
-  <div id="controls">
-    <p id="turn">Team 1 is aan de beurt</p>
-    <button onclick="rollDice()">🎲 Gooi dobbelsteen</button>
-    <p id="diceResult"></p>
-  </div>
+<div id="controls">
+<h2 id="turn">🔵 is aan de beurt</h2>
 
-  <div id="questionBox">
-    <p id="question">Vraag verschijnt hier...</p>
-    <button onclick="showAnswer()">Toon antwoord</button>
-    <p id="answer"></p>
-  </div>
+<button onclick="rollDice()">
+🎲 Gooi dobbelsteen
+</button>
+
+<p id="diceResult"></p>
+</div>
+
+<div id="questionBox">
+<h2>Vraag</h2>
+
+<p id="question">
+Vraag verschijnt hier...
+</p>
+
+<button onclick="showAnswer()">
+Toon antwoord
+</button>
+
+<p id="answer"></p>
+</div>
+
+<div id="popup"></div>
+
+</div>
+
+<div id="board"></div>
 
 </div>
 
