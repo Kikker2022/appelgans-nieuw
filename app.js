@@ -21,6 +21,7 @@ const soundPut = new Audio("public/dubbel.mp3");
 const soundWin = new Audio("public/finish.mp3");
 const soundPrison = new Audio("public/gevangenis.mp3");
 const soundPit = new Audio("public/put.mp3");
+const soundInn = new Audio("public/herberg.mp3");
 
 const specialTiles = {
 6:"gans",
@@ -158,11 +159,11 @@ nextTurn();
 
 async function handleSpecial(team){
 
-const type=specialTiles[team.position];
+const type = specialTiles[team.position];
 
 if(!type) return;
 
-if(type==="gans"){
+if(type === "gans"){
 
 soundGans.play();
 
@@ -170,7 +171,7 @@ showPopup("🪿 Gans! Ga 6 vakjes vooruit");
 
 for(let i=0;i<6;i++){
 
-if(team.position<TOTAL_CELLS){
+if(team.position < TOTAL_CELLS){
 
 team.position++;
 
@@ -184,11 +185,13 @@ await sleep(350);
 
 }
 
-if(type==="brug"){
+if(type === "brug"){
 
-showPopup("🌉 Brug! Naar vak 30");
+showPopup("🌉 Brug! Ga naar vak 30");
 
-while(team.position<30){
+if(team.position < 30){
+
+while(team.position < 30){
 
 team.position++;
 
@@ -198,41 +201,57 @@ await sleep(250);
 
 }
 
+}else{
+
+while(team.position > 30){
+
+team.position--;
+
+updateBoard();
+
+await sleep(250);
+
 }
 
-if(type==="put"){
+}
+
+}
+
+if(type === "put"){
 
 soundPit.play();
 
 showPopup("🕳️ In de put! Beurt overslaan");
 
-team.skip=true;
+team.skip = true;
 
 }
 
-if(type==="gevangenis"){
+if(type === "gevangenis"){
 
 soundPrison.play();
 
 showPopup("⛓️ Gevangenis! Beurt overslaan");
 
-team.skip=true;
+team.skip = true;
 
 }
 
-if(type==="herberg"){
+if(type === "herberg"){
 
-showPopup("🍺 Herberg! Rust een beurt uit");
+soundInn.play();
 
-team.skip=true;
+showPopup("🍺 Herberg! Beurt overslaan");
+
+team.skip = true;
 
 }
 
-if(type==="dood"){
+if(type === "dood"){
 
 showPopup("☠️ Terug naar start!");
 
-while(team.position>0){
+while(team.position > 0){
 
 team.position--;
 
