@@ -254,7 +254,7 @@ popup.innerText=text;
 
 setTimeout(()=>{
 popup.style.display="none";
-},3000);
+},6000);
 
 }
 
