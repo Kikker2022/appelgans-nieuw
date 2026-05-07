@@ -19,6 +19,8 @@ const popup = document.getElementById("popup");
 const soundGans = new Audio("public/gans.mp3");
 const soundPut = new Audio("public/dubbel.mp3");
 const soundWin = new Audio("public/finish.mp3");
+const soundPrison = new Audio("public/gevangenis.mp3");
+const soundPit = new Audio("public/put.mp3");
 
 const specialTiles = {
 6:"gans",
@@ -136,7 +138,7 @@ await sleep(350);
 
 }
 
-handleSpecial(team);
+await handleSpecial(team);
 
 loadQuestion();
 
@@ -154,7 +156,7 @@ nextTurn();
 
 }
 
-function handleSpecial(team){
+async function handleSpecial(team){
 
 const type=specialTiles[team.position];
 
@@ -166,21 +168,41 @@ soundGans.play();
 
 showPopup("🪿 Gans! Ga 6 vakjes vooruit");
 
-team.position=Math.min(team.position+6,TOTAL_CELLS);
+for(let i=0;i<6;i++){
+
+if(team.position<TOTAL_CELLS){
+
+team.position++;
+
+updateBoard();
+
+await sleep(350);
+
+}
+
+}
 
 }
 
 if(type==="brug"){
 
-showPopup("🌉 Brug! Spring vooruit naar vak 30");
+showPopup("🌉 Brug! Naar vak 30");
 
-team.position=30;
+while(team.position<30){
+
+team.position++;
+
+updateBoard();
+
+await sleep(250);
+
+}
 
 }
 
 if(type==="put"){
 
-soundPut.play();
+soundPit.play();
 
 showPopup("🕳️ In de put! Beurt overslaan");
 
@@ -189,6 +211,8 @@ team.skip=true;
 }
 
 if(type==="gevangenis"){
+
+soundPrison.play();
 
 showPopup("⛓️ Gevangenis! Beurt overslaan");
 
@@ -208,7 +232,15 @@ if(type==="dood"){
 
 showPopup("☠️ Terug naar start!");
 
-team.position=0;
+while(team.position>0){
+
+team.position--;
+
+updateBoard();
+
+await sleep(150);
+
+}
 
 }
 
