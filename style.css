@@ -25,13 +25,13 @@ top:10px;
 
 #board{
 display:grid;
-grid-template-columns:repeat(10,70px);
+grid-template-columns:repeat(10,52px);
 gap:6px;
 }
 
 .cell{
-width:70px;
-height:70px;
+width:52px;
+height:52px;
 border-radius:12px;
 border:2px solid #999;
 background:#e8ffe8;
@@ -46,7 +46,7 @@ transition:0.3s;
 }
 
 .cell span{
-font-size:34px;
+font-size:26px;
 }
 
 .gans{
