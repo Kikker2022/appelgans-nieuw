@@ -190,6 +190,8 @@ await sleep(350);
 
 if(type === "brug"){
 
+soundBridge.play();
+
 showPopup("🌉 Brug! Ga naar vak 30");
 
 if(team.position < 30){
