@@ -8,55 +8,48 @@ body{
 /* TITEL */
 h1{
   text-align:center;
-  font-size:28px;
+  font-size:26px;
   margin:10px 0;
 }
 
-/* SPELBLOK */
+/* SPEL CONTAINER */
 #gameContainer{
   display:flex;
   flex-direction:column;
   align-items:center;
 }
 
-/* BOARD */
+/* ====== BOARD ====== */
 #board{
   display:grid;
-  #board{
   grid-template-columns:repeat(8, 38px);
   gap:0;
-  row-gap:0;
-  column-gap:0;
   margin:0 auto;
   padding:0;
 }
 
-/* VAKKEN */
+/* ====== CEL ====== */
 .cell{
-  width:42px;
-  height:42px;
-  background:#e9ffe9; /* lichtgroen */
+  width:38px;
+  height:38px;
+  background:#e9ffe9;
   border:1px solid #666;
-  border-radius:0;
   display:flex;
   flex-direction:column;
   justify-content:center;
   align-items:center;
-  font-size:9px;
+  font-size:8px;
   line-height:1;
-  margin:0;
-  padding:0;
   position:relative;
-  overflow:hidden;
 }
 
 /* ICONEN */
 .cell span{
-  font-size:14px;
+  font-size:12px;
   line-height:1;
 }
 
-/* ACTIEVAKKEN */
+/* ====== ACTIE VAKKEN ====== */
 .gans{ background:#ffe680; }
 .brug{ background:#9be7ff; }
 .put{ background:#c7b6ff; }
@@ -65,7 +58,7 @@ h1{
 .dood{ background:#c9ffc9; }
 .finish{ background:#ffe600; }
 
-/* PIONNEN */
+/* ====== PIONNEN ====== */
 .pawns{
   position:absolute;
   bottom:1px;
@@ -74,8 +67,8 @@ h1{
 }
 
 .pawn{
-  width:9px;
-  height:9px;
+  width:8px;
+  height:8px;
   border-radius:50%;
   border:1px solid white;
 }
@@ -85,7 +78,7 @@ h1{
 .green{ background:green; }
 .purple{ background:purple; }
 
-/* KNOPPEN */
+/* ====== KNOPPEN ====== */
 button{
   width:100%;
   padding:14px;
@@ -97,7 +90,7 @@ button{
   margin-top:10px;
 }
 
-/* PANELEN */
+/* ====== PANEEL ====== */
 #controls, #questionBox, #popup{
   width:95%;
   max-width:320px;
@@ -113,7 +106,6 @@ button{
   display:none;
   font-weight:bold;
   text-align:center;
-  font-size:16px;
 }
 
 /* VRAAG */
@@ -128,18 +120,25 @@ button{
   color:green;
 }
 
-/* MOBILE EXTRA FIX */
+/* ====== MOBIEL ====== */
 @media (max-width: 500px){
+
   #board{
-    grid-template-columns:repeat(7, 38px);
+    grid-template-columns:repeat(8, 34px);
   }
 
   .cell{
-  width:38px;
-  height:38px;
-}
+    width:34px;
+    height:34px;
+    font-size:7px;
+  }
 
   .cell span{
-    font-size:12px;
+    font-size:10px;
+  }
+
+  .pawn{
+    width:7px;
+    height:7px;
   }
 }
