@@ -167,4 +167,13 @@ button{
   font-weight:bold;
   font-size:15px;
 }
+
+  .screen{
+  width:100%;
+  text-align:center;
+}
+
+.hidden{
+  display:none;
+}
 }
