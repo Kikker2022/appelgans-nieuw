@@ -164,7 +164,7 @@ if(team.position>=TOTAL_CELLS){
 
 soundWin.play();
 
-showPopup(`${team.icon} heeft gewonnen!`);
+statusMessage.innerText =(`${team.icon} heeft gewonnen!`);
 
 return;
 
@@ -184,7 +184,7 @@ if(type === "gans"){
 
 soundGans.play();
 
-showPopup("🪿 Gans! Ga 6 vakjes vooruit");
+statusMessage.innerText =("🪿 Gans! Ga 6 vakjes vooruit");
 
 for(let i=0;i<6;i++){
 
@@ -240,7 +240,7 @@ if(type === "put"){
 
 soundPit.play();
 
-showPopup("🕳️ In de put! Beurt overslaan");
+statusMessage.innerText =("🕳️ In de put! Beurt overslaan");
 
 team.skipTurns = 1;
 
@@ -250,7 +250,7 @@ if(type === "gevangenis"){
 
 soundPrison.play();
 
-showPopup("⛓️ Gevangenis! Beurt overslaan");
+statusMessage.innerText =("⛓️ Gevangenis! Beurt overslaan");
 
 team.skipTurns = 2;
 
@@ -260,7 +260,7 @@ if(type === "herberg"){
 
 soundInn.play();
 
-showPopup("🍺 Herberg! Beurt overslaan");
+statusMessage.innerText =("🍺 Herberg! Beurt overslaan");
 
 team.skipTurns = 1;
 
@@ -268,7 +268,7 @@ team.skipTurns = 1;
 
 if(type === "dood"){
 
-showPopup("☠️ Terug naar start!");
+statusMessage.innerText =("☠️ Terug naar start!");
 
 while(team.position > 0){
 
