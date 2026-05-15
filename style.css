@@ -141,4 +141,30 @@ button{
     width:7px;
     height:7px;
   }
+
+  .answerBtn{
+  display:block;
+  width:100%;
+  margin-top:10px;
+  text-align:left;
+  background:#dddddd;
+  color:black;
+  font-size:16px;
+}
+
+.correct{
+  background:green !important;
+  color:white !important;
+}
+
+.wrong{
+  background:red !important;
+  color:white !important;
+}
+
+#explanation{
+  margin-top:15px;
+  font-weight:bold;
+  font-size:15px;
+}
 }
