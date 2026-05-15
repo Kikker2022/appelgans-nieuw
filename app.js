@@ -7,6 +7,9 @@ document.getElementById("screen2");
 const screen3 =
 document.getElementById("screen3");
 
+const statusMessage =
+document.getElementById("statusMessage");
+
 const TOTAL_CELLS = 140;
 
 let currentTeam = 0;
