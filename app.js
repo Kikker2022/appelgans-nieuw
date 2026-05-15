@@ -132,39 +132,25 @@ turnText.innerHTML=
 
 }
 
-async function rollDice(){
+function rollDice(){
 
-const team=teams[currentTeam];
+const roll =
+Math.floor(Math.random() * 6) + 1;
 
-if(team.skipTurns > 0){
-
-showPopup(
-`${team.icon} slaat een beurt over`
-);
-
-team.skipTurns--;
-
-nextTurn();
-
-return;
-
-}
-
-const roll=Math.floor(Math.random()*6)+1;
 lastRoll = roll;
 
-diceText.innerText=`Je gooide ${roll}`;
+diceText.innerText =
+"🎲 Je gooide: " + roll;
+
+/* eerst resultaat tonen */
+setTimeout(()=>{
+
+/* daarna naar vraagscherm */
 showScreen(screen2);
 
-for(let i=0;i<roll;i++){
+loadQuestion();
 
-if(team.position<TOTAL_CELLS){
-
-team.position++;
-
-updateBoard();
-
-await sleep(350);
+},1500);
 
 }
 
