@@ -1,180 +1,145 @@
 body{
-margin:0;
-padding:20px;
-font-family:Arial, sans-serif;
-background:#eef5ff;
+  margin:0;
+  padding:10px;
+  font-family: Arial, sans-serif;
+  background:#eef7ee;
 }
 
+/* TITEL */
 h1{
-text-align:center;
-font-size:42px;
-margin-bottom:20px;
+  text-align:center;
+  font-size:28px;
+  margin:10px 0;
 }
 
+/* SPELBLOK */
 #gameContainer{
-display:flex;
-gap:20px;
-align-items:flex-start;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
-#leftPanel{
-width:320px;
-position:sticky;
-top:10px;
-}
-
+/* BOARD */
 #board{
-display:grid;
-grid-template-columns:repeat(7,44px);
-gap:0;
-row-gap:0;
-column-gap:0;
-padding:0;
-margin:0 auto;
-justify-content:center;
-align-content:start;
+  display:grid;
+  grid-template-columns:repeat(7, 42px);
+  gap:0;
+  row-gap:0;
+  column-gap:0;
+  margin:0 auto;
+  padding:0;
 }
 
+/* VAKKEN */
 .cell{
-width:44px;
-height:44px;
-background:#e8ffe8;
-border:1px solid #888;
-border-radius:0px;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-position:relative;
-font-size:9px;
-font-weight:bold;
-margin:0;
-padding:0;
-line-height:1;
-overflow:hidden;
+  width:42px;
+  height:42px;
+  background:#e9ffe9; /* lichtgroen */
+  border:1px solid #666;
+  border-radius:0;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  font-size:9px;
+  line-height:1;
+  margin:0;
+  padding:0;
+  position:relative;
+  overflow:hidden;
 }
 
+/* ICONEN */
 .cell span{
-font-size:18px;
+  font-size:14px;
+  line-height:1;
 }
 
-.gans{
-background:#ffe66d;
-}
+/* ACTIEVAKKEN */
+.gans{ background:#ffe680; }
+.brug{ background:#9be7ff; }
+.put{ background:#c7b6ff; }
+.herberg{ background:#ffd3a6; }
+.gevangenis{ background:#ffb3b3; }
+.dood{ background:#c9ffc9; }
+.finish{ background:#ffe600; }
 
-.brug{
-background:#9bf6ff;
-}
-
-.put{
-background:#bdb2ff;
-}
-
-.herberg{
-background:#ffd6a5;
-}
-
-.gevangenis{
-background:#ffadad;
-}
-
-.dood{
-background:#caffbf;
-}
-
-.finish{
-background:#ffea00;
-}
-
+/* PIONNEN */
 .pawns{
-position:absolute;
-bottom:4px;
-display:flex;
-gap:4px;
+  position:absolute;
+  bottom:1px;
+  display:flex;
+  gap:1px;
 }
 
 .pawn{
-width:10px;
-height:10px;
-border-radius:50%;
-border:2px solid white;
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  border:1px solid white;
 }
 
-.red{
-background:red;
-}
+.blue{ background:blue; }
+.red{ background:red; }
+.green{ background:green; }
+.purple{ background:purple; }
 
-.blue{
-background:blue;
-}
-
-.green{
-background:green;
-}
-
-.purple{
-background:purple;
-}
-
+/* KNOPPEN */
 button{
-padding:18px;
-font-size:20px;
-border:none;
-border-radius:14px;
-cursor:pointer;
-background:#0077ff;
-color:white;
-margin-top:10px;
-width:100%;
+  width:100%;
+  padding:14px;
+  font-size:18px;
+  border:none;
+  border-radius:10px;
+  background:#0077ff;
+  color:white;
+  margin-top:10px;
 }
 
-button:hover{
-transform:scale(1.03);
+/* PANELEN */
+#controls, #questionBox, #popup{
+  width:95%;
+  max-width:320px;
+  background:white;
+  padding:10px;
+  margin:8px auto;
+  border-radius:10px;
+  box-shadow:0 2px 6px rgba(0,0,0,0.15);
 }
 
-#controls,
-#questionBox,
+/* POPUP */
 #popup{
-background:white;
-padding:20px;
-border-radius:16px;
-margin-bottom:20px;
-box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  display:none;
+  font-weight:bold;
+  text-align:center;
+  font-size:16px;
 }
 
-#popup{
-display:none;
-font-size:20px;
-font-weight:bold;
-}
-
+/* VRAAG */
 #question{
-font-size:20px;
-min-height:80px;
+  font-size:16px;
+  min-height:60px;
 }
 
 #answer{
-display:none;
-margin-top:15px;
-font-size:18px;
-font-weight:bold;
-color:#007700;
+  display:none;
+  font-weight:bold;
+  color:green;
 }
 
-@media(max-width:1000px){
+/* MOBILE EXTRA FIX */
+@media (max-width: 500px){
+  #board{
+    grid-template-columns:repeat(7, 38px);
+  }
 
-#gameContainer{
-flex-direction:column;
-}
+  .cell{
+    width:38px;
+    height:38px;
+    font-size:8px;
+  }
 
-#leftPanel{
-width:100%;
-position:relative;
-}
-
-#board{
-grid-template-columns:repeat(5,70px);
-justify-content:center;
-}
-
+  .cell span{
+    font-size:12px;
+  }
 }
