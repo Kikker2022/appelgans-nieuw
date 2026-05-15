@@ -148,6 +148,7 @@ return;
 }
 
 const roll=Math.floor(Math.random()*6)+1;
+lastRoll = roll;
 
 diceText.innerText=`Je gooide ${roll}`;
 showScreen(screen2);
