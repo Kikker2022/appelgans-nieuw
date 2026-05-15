@@ -12,11 +12,9 @@
 
 <h1>🪿 Appelgans 🪿</h1>
 
-<div id="gameContainer">
+<!-- SCHERM 1 -->
+<div id="screen1" class="screen">
 
-<div id="leftPanel">
-
-<div id="controls">
 <h2 id="turn">🔵 is aan de beurt</h2>
 
 <button onclick="rollDice()">
@@ -24,49 +22,53 @@
 </button>
 
 <p id="diceResult"></p>
+
 </div>
+
+<!-- SCHERM 2 -->
+<div id="screen2" class="screen hidden">
 
 <div id="questionBox">
 
 <h2>Vraag</h2>
 
-<p id="question">
-Vraag verschijnt hier...
-</p>
+<p id="question"></p>
 
-<div id="answers">
-
-<button class="answerBtn" id="btnA"
+<button class="answerBtn"
+id="btnA"
 onclick="checkAnswer('a')">
 A
 </button>
 
-<button class="answerBtn" id="btnB"
+<button class="answerBtn"
+id="btnB"
 onclick="checkAnswer('b')">
 B
 </button>
 
-<button class="answerBtn" id="btnC"
+<button class="answerBtn"
+id="btnC"
 onclick="checkAnswer('c')">
 C
 </button>
-
-</div>
 
 <p id="explanation"></p>
 
 </div>
 
-<div id="popup"></div>
-
 </div>
+
+<!-- SCHERM 3 -->
+<div id="screen3" class="screen hidden">
+
+<div id="popup"></div>
 
 <div id="board"></div>
 
 </div>
 
 <script src="data/vragen.js"></script>
-<script src="app.js?v=2"></script>
-  
+<script src="app.js?v=99"></script>
+
 </body>
 </html>
