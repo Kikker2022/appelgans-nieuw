@@ -1,4 +1,14 @@
 let currentTeam = 0;
+let selectedCategory =
+"Ooststellingwerf";
+let selectedCategory =
+"Fryslân";
+let selectedCategory =
+"Groningen";
+let selectedCategory =
+"Drenthe";
+let selectedCategory =
+"Educatief";
 let lastRoll = 0;
 let currentQuestion = null;
 
@@ -314,11 +324,16 @@ loadQuestion();
 
 function loadQuestion(){
 
+const actieveVragen =
+vragen.filter(
+v => v.categorie === selectedCategory
+);
+
 const q =
-vragen[
+actieveVragen[
 Math.floor(
 Math.random() *
-vragen.length
+actieveVragen.length
 )
 ];
 
