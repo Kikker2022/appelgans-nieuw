@@ -1,7 +1,7 @@
 let currentTeam = 0;
 
 let selectedCategory =
-"Ooststellingwerf";
+"Drenthe";
 
 let lastRoll = 0;
 let currentQuestion = null;
