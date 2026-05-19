@@ -1,14 +1,8 @@
 let currentTeam = 0;
-let selectedCategory =
-"Ooststellingwerf";
-let selectedCategory =
-"Fryslân";
-let selectedCategory =
-"Groningen";
+
 let selectedCategory =
 "Drenthe";
-let selectedCategory =
-"Educatief";
+
 let lastRoll = 0;
 let currentQuestion = null;
 
