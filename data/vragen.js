@@ -1,7 +1,5 @@
 const vragen = [
 
-const vragen = [
-
 {
 categorie:"Ooststellingwerf",
   
