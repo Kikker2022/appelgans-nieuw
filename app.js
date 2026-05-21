@@ -1,7 +1,7 @@
 let currentTeam = 0;
 
 let selectedCategory =
-"Drenthe";
+"Ooststellingwerf";
 
 let lastRoll = 0;
 let currentQuestion = null;
@@ -478,6 +478,21 @@ if(!type){
 return;
 }
 
+const categorySelect =
+document.getElementById(
+"categorySelect"
+);
+
+categorySelect.addEventListener(
+"change",
+function(){
+
+selectedCategory =
+categorySelect.value;
+
+}
+);
+  
 /* GANS */
 
 if(type === "gans"){
